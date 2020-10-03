@@ -28,9 +28,6 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            
-            
-            
             velocity.y += jumptHeight;
         }
 
