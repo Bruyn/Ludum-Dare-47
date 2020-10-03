@@ -22,8 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         Vector3 velocity = rb.velocity;
-        if (IsGrounded())
-            velocity.y += jumptHeight;
+        velocity.y += jumptHeight;
 
         rb.velocity = velocity;
     }
