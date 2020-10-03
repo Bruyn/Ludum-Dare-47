@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     [SerializeField]
-    private PlayerController controller;
+    private PlayerMovement movement;
 
     [SerializeField]
     private List<ICommand> commands = new List<ICommand>();
@@ -15,7 +15,7 @@ public class InputController : MonoBehaviour
     
     void Start()
     {
-        controller = GetComponent<PlayerController>();
+        movement = GetComponent<PlayerMovement>();
         QualitySettings.vSyncCount = 0;
         rewindPosition = transform.position;
     }
@@ -41,15 +41,15 @@ public class InputController : MonoBehaviour
 
     void AddMoveCommand(float x, float y, bool jump)
     {
-        MoveCommand moveCommand = new MoveCommand(controller, x, y, jump);
+        MoveCommand moveCommand = new MoveCommand(movement, x, y, jump);
         commands.Add(moveCommand);
         moveCommand.Do();
-        Debug.Log("Command added. Total commands: " + commands.Count);
     }
 
     IEnumerator ExecuteCommands()
     {
-        transform.position = rewindPosition;
+        Debug.Log("Commands executing. Total commands: " + commands.Count); ;
+        movement.SetPos(rewindPosition);
         executingCommands = true;
         List<ICommand> commandsCopy = new List<ICommand>(commands);
         foreach (var command in commandsCopy)

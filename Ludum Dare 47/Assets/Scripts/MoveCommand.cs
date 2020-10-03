@@ -2,11 +2,11 @@
 
 public class MoveCommand : ICommand
 {
-    public PlayerController Controller;
+    public PlayerMovement Controller;
     public Vector2 InputVector;
     public bool Jump;
 
-    public MoveCommand(PlayerController controller, float x, float y, bool jump)
+    public MoveCommand(PlayerMovement controller, float x, float y, bool jump)
     {
         InputVector = new Vector2(x, y);
         Jump = jump;

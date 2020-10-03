@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public CharacterController controller;
-
-    public float speed = 12f;
+    public Transform groundCheck;
+    public LayerMask groundMask;
 
     public float gravity = -9.8f;
-
-    public float jumpHeigth = 3f;
-    
-    public Transform groundCheck;
     public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-    
+    public float speed = 12f;
+    public float jumpHeigth = 3f;
+
     private Vector3 _velocity;
     private bool _isGrounded;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void Move(float x, float z, bool jumping)
     {
         _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -35,19 +24,22 @@ public class PlayerMovement : MonoBehaviour
         {
             _velocity.y = -2f;
         }
-        
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * (speed * Time.deltaTime));
 
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        if (jumping && _isGrounded)
         {
             _velocity.y = Mathf.Sqrt(jumpHeigth * -2f * gravity);
         }
         
         _velocity.y += gravity * Time.deltaTime;
-        controller.Move(_velocity * Time.deltaTime);
+        controller.Move(_velocity * Time.deltaTime);   
+    }
+
+    public void SetPos(Vector3 posToSet)
+    {
+        controller.enabled = false;
+        transform.position = posToSet;
+        controller.enabled = true;
     }
 }
