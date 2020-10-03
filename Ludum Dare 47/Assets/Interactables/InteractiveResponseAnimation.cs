@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class InteractiveResponseAnimation : InteractiveResponse
 {
-    public string animationName;
+    public string doAnimationName;
+    public string undoAnimationName;
     private Animator animator;
 
     private void Start()
@@ -15,6 +16,11 @@ public class InteractiveResponseAnimation : InteractiveResponse
 
     public override void DoResponseAction()
     {
-        animator.Play(animationName);
+        animator.Play(doAnimationName);
+    }
+
+    public override void UndoResponseAction()
+    {
+        animator.Play(undoAnimationName);
     }
 }

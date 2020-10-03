@@ -8,4 +8,9 @@ public class InteractiveResponse : MonoBehaviour
     {
         
     }
+
+    public virtual void UndoResponseAction()
+    {
+        
+    }
 }

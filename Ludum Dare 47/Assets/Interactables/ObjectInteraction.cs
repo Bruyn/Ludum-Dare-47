@@ -7,9 +7,12 @@ using UnityEngine.UI;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    public LayerMask interactibleLayer;
-    public Text uiInteractiveTextBox;
+    [SerializeField] LayerMask interactibleLayer;
+    [SerializeField] Text uiInteractiveTextBox;
+    [SerializeField] Transform cameraObject;
+    [SerializeField] float maxRayDistance = 4f;
 
+    private GameObject lastChecked;
     private InteractiveObject currentInteractive;
 
     // Update is called once per frame
@@ -19,17 +22,31 @@ public class ObjectInteraction : MonoBehaviour
         {
             TryInteract();
         }
+        
+        RaycastHit hit;
+        if (Physics.Raycast(cameraObject.position, cameraObject.forward, out hit, maxRayDistance, interactibleLayer))
+        {
+            if (lastChecked == hit.collider.gameObject || hit.collider == null)
+                return;
+
+            lastChecked = hit.collider.gameObject;
+            FoundInteractable(lastChecked);
+        }
+        else
+        {
+            lastChecked = null;
+            LostInteractable();
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void FoundInteractable(GameObject obj)
     {
-        var otherObject = other.gameObject;
-        if (!CanInteractByLayer(otherObject))
+        if (!CanInteractByLayer(obj))
         {
             return;
         }
         
-        var otherInteractive = otherObject.GetComponent<InteractiveObject>();
+        var otherInteractive = obj.GetComponent<InteractiveObject>();
         if (otherInteractive == null || !otherInteractive.IsCanInteract())
         {
             return;
@@ -42,20 +59,15 @@ public class ObjectInteraction : MonoBehaviour
         uiInteractiveTextBox.enabled = true;
     }
 
+    private void LostInteractable()
+    {
+        currentInteractive = null;
+        uiInteractiveTextBox.enabled = false;
+    }
+
     private void HandleBecameUnavailable()
     {
         currentInteractive.OnBecameUninteractable -= HandleBecameUnavailable;
-        uiInteractiveTextBox.enabled = false;
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        var otherObject = other.gameObject;
-        if (!CanInteractByLayer(otherObject))
-        {
-            return;
-        }
-
-        currentInteractive = null;
         uiInteractiveTextBox.enabled = false;
     }
 
@@ -68,7 +80,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         if (currentInteractive != null)
         {
-            currentInteractive.TryExecuteAction();
+            currentInteractive.TryDoInteract();
         }
     }
     
