@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7a6992f38f1d448a0c07773bd22261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAvailableByDefault: 1
-  isOneTimeInteraction: 1
   interactionText: Pull the Lever
+  isAvailableByDefault: 1
+  isOneTimeInteraction: 0
   responseObjectTags:
   - lever_door

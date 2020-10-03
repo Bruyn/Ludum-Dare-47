@@ -8,12 +8,21 @@ using UnityEngine.UI;
 public class ObjectInteraction : MonoBehaviour
 {
     [SerializeField] LayerMask interactibleLayer;
-    [SerializeField] Text uiInteractiveTextBox;
     [SerializeField] Transform cameraObject;
     [SerializeField] float maxRayDistance = 4f;
 
+    private Text uiInteractiveTextBox;
     private GameObject lastChecked;
     private InteractiveObject currentInteractive;
+
+    private void Awake()
+    {
+        var textObject = GameObject.FindWithTag("interactableTextBox");
+        if (textObject != null)
+        {
+            uiInteractiveTextBox = textObject.GetComponent<Text>();
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -54,21 +63,28 @@ public class ObjectInteraction : MonoBehaviour
 
         currentInteractive = otherInteractive;
         currentInteractive.OnBecameUninteractable += HandleBecameUnavailable;
-        uiInteractiveTextBox.text = currentInteractive.interactionText;
 
-        uiInteractiveTextBox.enabled = true;
+        if (uiInteractiveTextBox)
+        {
+            uiInteractiveTextBox.text = currentInteractive.interactionText;
+            uiInteractiveTextBox.enabled = true;   
+        }
     }
 
     private void LostInteractable()
     {
         currentInteractive = null;
-        uiInteractiveTextBox.enabled = false;
+        
+        if (uiInteractiveTextBox)
+            uiInteractiveTextBox.enabled = false;
     }
 
     private void HandleBecameUnavailable()
     {
         currentInteractive.OnBecameUninteractable -= HandleBecameUnavailable;
-        uiInteractiveTextBox.enabled = false;
+        
+        if (uiInteractiveTextBox)
+            uiInteractiveTextBox.enabled = false;
     }
 
     private bool CanInteractByLayer(GameObject obj)
