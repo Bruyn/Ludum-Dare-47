@@ -14,11 +14,7 @@ public class InputController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        controller.Move(horizontal, vertical);
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            controller.Jump();
-        }
+        bool jump = Input.GetButtonDown("Jump");
+        controller.Move(horizontal, vertical, jump);
     }
 }
