@@ -22,8 +22,8 @@ public class InputController : MonoBehaviour
     
     void Update()
     {
-        if (Application.targetFrameRate != 60)
-            Application.targetFrameRate = 60;
+         if (Application.targetFrameRate != 60)
+             Application.targetFrameRate = 60;
         
         if (executingCommands)
             return;
@@ -35,7 +35,7 @@ public class InputController : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1"))
         {
-            StartCoroutine(ExecuteCommands());
+            //StartCoroutine(ExecuteCommands());
         }
     }
 

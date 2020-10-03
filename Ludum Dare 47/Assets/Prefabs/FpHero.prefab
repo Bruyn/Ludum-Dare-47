@@ -294,9 +294,10 @@ GameObject:
   - component: {fileID: 1781282350450369826}
   - component: {fileID: 1096177611}
   - component: {fileID: 1360062614}
+  - component: {fileID: 404595589}
   m_Layer: 0
   m_Name: FpHero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,6 +358,7 @@ MonoBehaviour:
   groundDistance: 0.4
   speed: 12
   jumpHeigth: 3
+  _authority: {fileID: 404595589}
 --- !u!114 &1096177611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,8 +389,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76963822e5a4dbca6d61d10fc2aa72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
+  movement: {fileID: 1781282350450369826}
   executingCommands: 0
+--- !u!114 &404595589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781282350450369837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 480cea7b8bf743e4c82afb60f8be83b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1781282350628449282
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,5 +581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84c3aba18a84ac4bb1b8b187a7dd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 400
+  mouseSensitivity: 2
   playerBody: {fileID: 1781282350450369824}
+  _authority: {fileID: 404595589}

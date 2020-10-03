@@ -16,8 +16,18 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity;
     private bool _isGrounded;
 
+    public Authority _authority;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        Debug.DrawLine(Vector3.zero, new Vector3(5, 0, 0), Color.white, 2.5f);
+    }
+
     public void Move(float x, float z, bool jumping)
     {
+        if (!_authority.Enabled) return;
+        
         _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (_isGrounded && _velocity.y < 0)
@@ -33,9 +43,28 @@ public class PlayerMovement : MonoBehaviour
         }
         
         _velocity.y += gravity * Time.deltaTime;
-        controller.Move(_velocity * Time.deltaTime);   
+        controller.Move(_velocity * Time.deltaTime);
+        
+        
+        
     }
 
+    private float q = 0.0f;
+    
+    void FixedUpdate()
+    {
+        // always draw a 5-unit colored line from the origin
+        Color color = new Color(q, q, 1.0f);
+        Debug.DrawLine(Vector3.zero, new Vector3(0, 5, 0), color);
+        q = q + 0.01f;
+
+        if (q > 1.0f)
+        {
+            q = 0.0f;
+        }
+    }
+    
+    
     public void SetPos(Vector3 posToSet)
     {
         controller.enabled = false;
