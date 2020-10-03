@@ -13,20 +13,20 @@ public class PlayerController : MonoBehaviour
     public float speed = 1;
     public float jumptHeight = 5;
 
-    // Update is called once per frame
-    void Update()
+    public void Move(float x, float y)
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
         Vector3 velocity = rb.velocity;
-        velocity.x = horizontal * speed;
-        velocity.z = vertical * speed;
+        velocity.x = x * speed * Time.deltaTime;
+        velocity.z = y * speed * Time.deltaTime;
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
+        rb.velocity = velocity;
+    }
+
+    public void Jump()
+    {
+        Vector3 velocity = rb.velocity;
+        if (IsGrounded())
             velocity.y += jumptHeight;
-        }
-
 
         rb.velocity = velocity;
     }
