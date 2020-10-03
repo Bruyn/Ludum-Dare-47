@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public Rigidbody rb;
     public float speed = 1;
     public float jumptHeight = 5;
@@ -24,7 +19,7 @@ public class PlayerController : MonoBehaviour
             Jump();
     }
 
-    public void Jump()
+    private void Jump()
     {
         Vector3 velocity = rb.velocity;
         if (IsGrounded())

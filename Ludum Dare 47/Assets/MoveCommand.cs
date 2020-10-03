@@ -2,15 +2,23 @@
 
 public class MoveCommand : ICommand
 {
-    public Vector3 InputVector;
+    public PlayerController Controller;
+    public Vector2 InputVector;
+    public bool Jump;
+
+    public MoveCommand(PlayerController controller, float x, float y, bool jump)
+    {
+        InputVector = new Vector2(x, y);
+        Jump = jump;
+        Controller = controller;
+    }
     
     public void Do()
     {
-        //Move for InputVector
+        Controller.Move(InputVector.x, InputVector.y, Jump);
     }
 
     public void Undo()
-    private Getusing UINnt9itityEngine;
     {
         //Move for -InputVector
     }
