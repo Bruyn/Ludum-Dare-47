@@ -24,6 +24,7 @@
 
 # Gradle cache directory
 .gradle/
+.idea/
 
 #ignore IDE
 .idea/

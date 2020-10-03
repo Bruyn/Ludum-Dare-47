@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 258912957}
   speed: 10
+  jumptHeight: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
