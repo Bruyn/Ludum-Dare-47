@@ -7,15 +7,9 @@ public class MouseLook : MonoBehaviour
 	[SerializeField] private Authority	authority;
 	[SerializeField] private Transform	playerBody;
 	[SerializeField] private float		mouseSensitivity = 2f;
-
-	private float xRotation = 0f;
+	
 	private bool cursorLocked = true;
-
-    public Transform playerBody;
-
-    public float xRotation = 0f;
-    
-    public Authority _authority;
+	public float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
