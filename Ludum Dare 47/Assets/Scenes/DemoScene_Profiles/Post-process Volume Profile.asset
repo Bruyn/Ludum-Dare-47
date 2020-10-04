@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Name: Post-process Volume Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 1834114690783575470}
+  - {fileID: 1626263114516911169}
   - {fileID: 5499745189098073153}
   - {fileID: -8054694537152796533}
   - {fileID: 1178148211965809966}
@@ -74,7 +74,7 @@ MonoBehaviour:
   lumContrib:
     overrideState: 1
     value: 0.8
---- !u!114 &1834114690783575470
+--- !u!114 &1626263114516911169
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -95,12 +95,12 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.52
+    value: 0.29
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
-    overrideState: 1
+    overrideState: 0
     value: 1
   noiseFilterTolerance:
     overrideState: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
     overrideState: 0
     value: -12
   thicknessModifier:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 1.43
   directLightingStrength:
     overrideState: 0
     value: 0
