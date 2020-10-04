@@ -40,11 +40,12 @@ public class ObjectInteraction : MonoBehaviour
             return;
         }
 
-        
+
         TrySetText(otherInteractive.interactionText);
 
         if (Input.GetButtonDown("Fire3"))
         {
+            Debug.Log("Do interact");
             otherInteractive.TryDoInteract();
         }
     }

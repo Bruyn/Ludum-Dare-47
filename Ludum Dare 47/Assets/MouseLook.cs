@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
+	[SerializeField] private Authority	authority;
+	[SerializeField] private Transform	playerBody;
+	[SerializeField] private float		mouseSensitivity = 2f;
 
-    public float mouseSensitivity = 2f;
+	private float xRotation = 0f;
+	private bool cursorLocked = true;
 
-    public Transform playerBody;
-
-    private float xRotation = 0f;
-    
-    public Authority _authority;
-
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Cursor.lockState = cursorLocked ? CursorLockMode.None : CursorLockMode.Locked;
+			Cursor.visible = !cursorLocked;
+			cursorLocked = !cursorLocked;
+		}
+	}
+
     public void Rotate(float axisX, float axisY)
     {
-        if (!_authority.Enabled) return;
-        
+        if (!authority.Enabled) return;
+        if (!cursorLocked)		return;
+
         float mouseX = axisX * mouseSensitivity;
         float mouseY = axisY * mouseSensitivity;
         
