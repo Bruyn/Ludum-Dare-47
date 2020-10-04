@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class InteractiveObject : MonoBehaviour
 {
-    public event Action OnBecameUninteractable;
-
     public string interactionText;
     [SerializeField] bool isAvailableByDefault = true;
     [SerializeField] bool isOneTimeInteraction;
@@ -88,6 +86,5 @@ public class InteractiveObject : MonoBehaviour
     private void MakeUninteractable()
     {
         isAvailable = false;
-        OnBecameUninteractable();
     }
 }

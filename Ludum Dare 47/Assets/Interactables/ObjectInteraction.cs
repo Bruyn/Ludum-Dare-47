@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ObjectInteraction : MonoBehaviour
@@ -12,9 +8,8 @@ public class ObjectInteraction : MonoBehaviour
     [SerializeField] float maxRayDistance = 4f;
 
     private Text uiInteractiveTextBox;
-    private GameObject lastChecked;
-    private InteractiveObject currentInteractive;
-
+    public Authority _authority;
+    
     private void Awake()
     {
         var textObject = GameObject.FindWithTag("interactableTextBox");
@@ -27,77 +22,39 @@ public class ObjectInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
-        {
-            TryInteract();
-        }
+        if (!_authority.Enabled) return;
         
+        TrySetText("");
+
         RaycastHit hit;
-        if (Physics.Raycast(cameraObject.position, cameraObject.forward, out hit, maxRayDistance, interactibleLayer))
-        {
-            if (lastChecked == hit.collider.gameObject || hit.collider == null)
-                return;
-
-            lastChecked = hit.collider.gameObject;
-            FoundInteractable(lastChecked);
-        }
-        else
-        {
-            lastChecked = null;
-            LostInteractable();
-        }
-    }
-
-    private void FoundInteractable(GameObject obj)
-    {
-        if (!CanInteractByLayer(obj))
+        if (!Physics.Raycast(cameraObject.position, cameraObject.forward, out hit, maxRayDistance, interactibleLayer))
         {
             return;
         }
-        
-        var otherInteractive = obj.GetComponent<InteractiveObject>();
+
+        GameObject obj = hit.collider.gameObject;
+        InteractiveObject otherInteractive = obj.GetComponent<InteractiveObject>();
+
         if (otherInteractive == null || !otherInteractive.IsCanInteract())
         {
             return;
         }
 
-        currentInteractive = otherInteractive;
-        currentInteractive.OnBecameUninteractable += HandleBecameUnavailable;
+        
+        TrySetText(otherInteractive.interactionText);
 
-        if (uiInteractiveTextBox)
+        if (Input.GetButtonDown("Fire3"))
         {
-            uiInteractiveTextBox.text = currentInteractive.interactionText;
-            uiInteractiveTextBox.enabled = true;   
+            otherInteractive.TryDoInteract();
         }
     }
 
-    private void LostInteractable()
+    void TrySetText(string value)
     {
-        currentInteractive = null;
-        
         if (uiInteractiveTextBox)
-            uiInteractiveTextBox.enabled = false;
-    }
-
-    private void HandleBecameUnavailable()
-    {
-        currentInteractive.OnBecameUninteractable -= HandleBecameUnavailable;
-        
-        if (uiInteractiveTextBox)
-            uiInteractiveTextBox.enabled = false;
-    }
-
-    private bool CanInteractByLayer(GameObject obj)
-    {
-        return interactibleLayer == (interactibleLayer | (1 << obj.layer));
-    }
-
-    private void TryInteract()
-    {
-        if (currentInteractive != null)
         {
-            currentInteractive.TryDoInteract();
+            uiInteractiveTextBox.text = value;
+            uiInteractiveTextBox.enabled = value != "";
         }
     }
-    
 }

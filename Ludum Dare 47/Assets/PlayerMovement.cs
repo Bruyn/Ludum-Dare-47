@@ -5,32 +5,26 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public Transform groundCheck;
-    public LayerMask groundMask;
-
     public float gravity = -9.8f;
-    public float groundDistance = 0.4f;
     public float speed = 12f;
     public float jumpHeigth = 3f;
 
     private Vector3 _velocity;
-    private bool _isGrounded;
-
+    
     public Authority _authority;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.DrawLine(Vector3.zero, new Vector3(5, 0, 0), Color.white, 2.5f);
     }
 
     public void Move(float x, float z, bool jumping)
     {
         if (_authority.Enabled)
         {
-            _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            bool isGrounded = controller.isGrounded;
 
-            if (_isGrounded && _velocity.y < 0)
+            if (isGrounded && _velocity.y < 0)
             {
                 _velocity.y = -2f;
             }
@@ -38,10 +32,11 @@ public class PlayerMovement : MonoBehaviour
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * (speed * Time.deltaTime));
 
-            if (jumping && _isGrounded)
+            if (jumping && isGrounded)
             {
                 _velocity.y = Mathf.Sqrt(jumpHeigth * -2f * gravity);
             }
+            
         }
         
         _velocity.y += gravity * Time.deltaTime;
