@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
@@ -24,8 +24,8 @@ public class InteractiveObject : MonoBehaviour
         if (objectsToInteract.Count == 0)
             Debug.LogWarning(gameObject.name + " has 0 interactable objects! Set them in the editor.");
     }
-
-    public bool IsCanInteract()
+    
+    public virtual bool IsCanInteract()
     {
         return isAvailable;
     }
