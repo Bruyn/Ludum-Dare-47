@@ -9,7 +9,7 @@ public class MouseLook : MonoBehaviour
 
     public Transform playerBody;
 
-    private float xRotation = 0f;
+    public float xRotation = 0f;
     
     public Authority _authority;
 
@@ -25,15 +25,14 @@ public class MouseLook : MonoBehaviour
         float mouseY = axisY * mouseSensitivity;
         
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);        
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);        
         playerBody.Rotate(Vector3.up * mouseX);
     }
 
-    public void Undo()
+    public void Undo(float xRot)
     {
-        xRotation = transform.localRotation.eulerAngles.x;
+        xRotation = xRot;
     }
     
 }
