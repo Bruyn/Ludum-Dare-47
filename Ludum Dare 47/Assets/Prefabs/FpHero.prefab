@@ -105,9 +105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementControl: {fileID: 1781282350450369826}
   mouseControl: {fileID: 1781282350919544791}
+  cameraObject: {fileID: 1781282350919544785}
   authority: {fileID: 404595589}
-  recordedPointsColor: {r: 0.17723632, g: 1, b: 0, a: 1}
-  playedBackPointsColor: {r: 0, g: 0.09580898, b: 1, a: 1}
+  trailColor: {r: 0.16579854, g: 1, b: 0, a: 1}
 --- !u!114 &404595589
 MonoBehaviour:
   m_ObjectHideFlags: 0
