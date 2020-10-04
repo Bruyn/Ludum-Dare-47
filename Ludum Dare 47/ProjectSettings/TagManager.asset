@@ -7,6 +7,8 @@ TagManager:
   - lever_door
   - interactableTextBox
   - recordText
+  - simulatedEntity
+  - simulationController
   layers:
   - Default
   - TransparentFX

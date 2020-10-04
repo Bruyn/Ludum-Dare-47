@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    [SerializeField] LayerMask interactibleLayer;
-    [SerializeField] Transform cameraObject;
-    [SerializeField] float maxRayDistance = 4f;
+    public LayerMask interactibleLayer;
+    public Transform cameraObject;
+    public float maxRayDistance = 4f;
 
     private Text uiInteractiveTextBox;
     public Authority _authority;

@@ -120,3 +120,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.xml
+Ludum Dare 47/Packages/packages-lock.json
+Ludum Dare 47/Packages/manifest.json

@@ -14,7 +14,6 @@ public class PlayerSwitchMng : MonoBehaviour
     private GameObject[] _players;
     private int _currentPlayerIndex = -1;
 
-    // Update is called once per frame
     void Update()
     {
         int newPlayerIndex = _currentPlayerIndex;

@@ -1,34 +1,61 @@
-﻿using UnityEngine;
+﻿using System.Net.Http.Headers;
+using UnityEngine;
 
 public class MoveCommand : ICommand
 {
-    public PlayerMovement Controller;
-    public MouseLook look;
-    public Vector2 InputVector;
-    public Vector2 RotationVector;
-    public bool Jump;
+    private PlayerMovement movementController;
+    private MouseLook look;
 
-    public MoveCommand(PlayerMovement controller, MouseLook mouseLook)
+    private Vector2 movementInput;
+    private Vector2 rotationInput;
+    private bool isJump;
+
+    private Quaternion rotation;
+    private Vector3 position;
+    private Vector3 velocity;
+
+    public MoveCommand(PlayerMovement movement, MouseLook mouse)
     {
-        look = mouseLook;
-        Controller = controller;
+        look = mouse;
+        movementController = movement;
     }
 
-    public void SetPosition(float inputX, float inputY, bool isJump)
+    public void SetMovementInput(float inputX, float inputY, bool currIsJump)
     {
-        Jump = isJump;
-        InputVector = new Vector2(inputX, inputY);
-    }
-    
-    public void SetRotation(float axisX, float axisY)
-    {
-        RotationVector = new Vector2(axisX, axisY);
+        movementInput = new Vector2(inputX, inputY);
+        isJump = currIsJump;
     }
 
-public void Do()
+    public void SetRotationInput(float axisX, float axisY)
     {
-        look.Rotate(RotationVector.x, RotationVector.y);
-        Controller.Move(InputVector.x, InputVector.y, Jump);
+        rotationInput = new Vector2(axisX, axisY);
+    }
+
+    public void SetTransform(Quaternion currRotation, Vector3 currPosition)
+    {
+        rotation = currRotation;
+        position = currPosition;
+    }
+
+    public void SetVelocity(Vector3 currVelocity)
+    {
+        velocity = currVelocity;
+    }
+
+    public Vector3 GetPos()
+    {
+        return position;
+    }
+
+    public Quaternion GetRot()
+    {
+        return rotation;
+    }
+
+    public void Do()
+    {
+        look.Rotate(rotationInput.x, rotationInput.y);
+        movementController.Move(movementInput.x, movementInput.y, isJump);
     }
 
     public void Undo()

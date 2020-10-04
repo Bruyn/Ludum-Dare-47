@@ -7,8 +7,8 @@ using UnityEngine;
 public class InteractiveObject : MonoBehaviour
 {
     public string interactionText;
-    [SerializeField] bool isAvailableByDefault = true;
-    [SerializeField] bool isOneTimeInteraction;
+    public bool isAvailableByDefault = true;
+    public bool isOneTimeInteraction;
 
     public string[] responseObjectTags;
 

@@ -13,11 +13,6 @@ public class PlayerMovement : MonoBehaviour
     
     public Authority _authority;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void Move(float x, float z, bool jumping)
     {
         if (_authority.Enabled)
@@ -41,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
         
         _velocity.y += gravity * Time.deltaTime;
         controller.Move(_velocity * Time.deltaTime);
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return _velocity;
     }
 
     public void SetPosAndRot(Vector3 posToSet, Quaternion rotToSet)
