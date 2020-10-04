@@ -17,16 +17,16 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
     public Rigidbody rb;
     private bool isPause;
 
-    public override void TriggerSimulate(PLaybackMode mode)
+    public override void TriggerSimulate(PlaybackMode mode)
     {
         switch (mode)
         {
-            case PLaybackMode.Pause:
+            case PlaybackMode.Pause:
                 rb.isKinematic = true;
                 isPause = true;
                 break;
 
-            case PLaybackMode.PlayAndRecord:
+            case PlaybackMode.PlayAndRecord:
                 if (isPause)
                 {
                     rb.isKinematic = false;
@@ -48,10 +48,10 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
                 lastStateIdx = states.Count - 1;
 
                 break;
-            case PLaybackMode.FastForward:
+            case PlaybackMode.FastForward:
                 TryExecuteCommand();
                 break;
-            case PLaybackMode.Rewind:
+            case PlaybackMode.Rewind:
                 TryRestoreCommand();
                 break;
         }

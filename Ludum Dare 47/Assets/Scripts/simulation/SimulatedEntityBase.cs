@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SimulatedEntityBase : MonoBehaviour
 {
-    public virtual void TriggerSimulate(PLaybackMode mode)
+    public virtual void TriggerSimulate(PlaybackMode mode)
     {
     }
 }

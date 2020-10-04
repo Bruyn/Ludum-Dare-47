@@ -9,6 +9,7 @@ TagManager:
   - recordText
   - simulatedEntity
   - simulationController
+  - playerSwitchManager
   layers:
   - Default
   - TransparentFX

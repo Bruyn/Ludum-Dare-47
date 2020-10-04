@@ -14,6 +14,14 @@ public class PlayerSwitchMng : MonoBehaviour
     private GameObject[] _players;
     private int _currentPlayerIndex = -1;
 
+    public GameObject GetCurrentAuthority()
+    {
+        if (_currentPlayerIndex < 0)
+            return null;
+
+        return _players[_currentPlayerIndex];
+    }
+    
     void Update()
     {
         int newPlayerIndex = _currentPlayerIndex;

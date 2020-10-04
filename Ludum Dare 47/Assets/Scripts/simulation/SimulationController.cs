@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PLaybackMode
+public enum PlaybackMode
 {
     Pause,
     PlayAndRecord,
@@ -15,17 +15,24 @@ public class SimulationController : MonoBehaviour
 {
     public KeyCode pauseToggleKey;
     public KeyCode rewindKey;
-    public KeyCode fastForwardKey;
+    public KeyCode forwardKey;
+    public KeyCode fastPlayBackKey;
 
     public string simulatedObjectTag;
 
-    private PLaybackMode currentMode = PLaybackMode.PlayAndRecord;
+    private PlaybackMode currentMode = PlaybackMode.PlayAndRecord;
+    private bool isFastPlayBack = false;
 
     private List<SimulatedEntityBase> simulatedEntities = new List<SimulatedEntityBase>();
 
-    public PLaybackMode GetCurrentMode()
+    public PlaybackMode GetCurrentMode()
     {
         return currentMode;
+    }
+
+    public bool IsFastPlayBack()
+    {
+        return isFastPlayBack;
     }
 
     void Start()
@@ -46,16 +53,16 @@ public class SimulationController : MonoBehaviour
         {
             switch (currentMode)
             {
-                case PLaybackMode.Pause:
-                    currentMode = PLaybackMode.PlayAndRecord;
+                case PlaybackMode.Pause:
+                    currentMode = PlaybackMode.PlayAndRecord;
                     break;
-                case PLaybackMode.PlayAndRecord:
-                    currentMode = PLaybackMode.Pause;
+                case PlaybackMode.PlayAndRecord:
+                    currentMode = PlaybackMode.Pause;
                     break;
             }
         }
 
-        if (currentMode != PLaybackMode.PlayAndRecord)
+        if (currentMode != PlaybackMode.PlayAndRecord)
         {
             ProcessKeys();
         }
@@ -65,22 +72,33 @@ public class SimulationController : MonoBehaviour
     {
         if (Input.GetKey(rewindKey))
         {
-            currentMode = PLaybackMode.Rewind;
+            currentMode = PlaybackMode.Rewind;
         }
 
-        if (Input.GetKey(fastForwardKey))
+        if (Input.GetKey(forwardKey))
         {
-            currentMode = PLaybackMode.FastForward;
+            currentMode = PlaybackMode.FastForward;
         }
 
-        if (Input.GetKeyUp(rewindKey) || Input.GetKeyUp(fastForwardKey))
+        if (Input.GetKeyUp(rewindKey) || Input.GetKeyUp(forwardKey))
         {
-            currentMode = PLaybackMode.Pause;
+            currentMode = PlaybackMode.Pause;
         }
+
+        isFastPlayBack = Input.GetKey(fastPlayBackKey);
     }
 
     private void FixedUpdate()
     {
+        if (isFastPlayBack)
+        {
+            Time.timeScale = 2;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        
         foreach (var entity in simulatedEntities)
         {
             entity.TriggerSimulate(currentMode);

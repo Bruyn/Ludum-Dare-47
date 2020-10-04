@@ -53,14 +53,19 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void Simulate(PLaybackMode mode)
+    public int GetCurrentCommandIdx()
+    {
+        return lastComandIdx;
+    }
+    
+    public void Simulate(PlaybackMode mode)
     {
         switch (mode)
         {
-            case PLaybackMode.Pause:
+            case PlaybackMode.Pause:
                 movementControl._velocity = ((MoveCommand) commands[lastComandIdx]).velocity;
                 break;
-            case PLaybackMode.PlayAndRecord:
+            case PlaybackMode.PlayAndRecord:
                 if (authority.Enabled && lastComandIdx > 0 && lastComandIdx < commands.Count - 1)
                 {
                     commands.RemoveRange(lastComandIdx, commands.Count - lastComandIdx);
@@ -77,10 +82,10 @@ public class InputController : MonoBehaviour
                 }
 
                 break;
-            case PLaybackMode.FastForward:
+            case PlaybackMode.FastForward:
                 TryDoCommand();
                 break;
-            case PLaybackMode.Rewind:
+            case PlaybackMode.Rewind:
                 TryUndoCommand();
                 break;
         }

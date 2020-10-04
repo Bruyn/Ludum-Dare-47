@@ -16,5 +16,6 @@ public class PlayBackButtonsBhv : MonoBehaviour
     void Update()
     {
         _animator.SetInteger("playBackState", (int)_simulationController.GetCurrentMode());
+        _animator.SetBool("isFast", _simulationController.IsFastPlayBack());
     }
 }
