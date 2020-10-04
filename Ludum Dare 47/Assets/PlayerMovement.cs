@@ -48,10 +48,11 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(_velocity * Time.deltaTime);
     }
 
-    public void SetPos(Vector3 posToSet)
+    public void SetPosAndRot(Vector3 posToSet, Quaternion rotToSet)
     {
         controller.enabled = false;
         transform.position = posToSet;
+        transform.rotation = rotToSet;
         controller.enabled = true;
     }
 }

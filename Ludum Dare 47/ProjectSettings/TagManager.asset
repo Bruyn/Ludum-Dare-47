@@ -6,6 +6,7 @@ TagManager:
   tags:
   - lever_door
   - interactableTextBox
+  - recordText
   layers:
   - Default
   - TransparentFX
