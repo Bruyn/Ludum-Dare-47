@@ -93,6 +93,8 @@ public class InputController : MonoBehaviour
         mouseX = .0f;
         mouseY = .0f;
         isJump = false;
+        horizontalAxis = 0f;
+        verticalAxis = 0f;
     }
 
     private MoveCommand AddMoveCommand()

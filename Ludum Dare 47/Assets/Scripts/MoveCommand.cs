@@ -16,6 +16,7 @@ public class MoveCommand : ICommand
     private Quaternion cameraRotation;
     private Vector3 position;
     public Vector3 velocity;
+    private float _xRotation;
 
     public MoveCommand(PlayerMovement movement, MouseLook mouse, GameObject obj, GameObject cam)
     {
@@ -35,6 +36,7 @@ public class MoveCommand : ICommand
     {
         rotationInput = new Vector2(axisX, axisY);
         cameraRotation = camRot;
+        _xRotation = look.xRotation;
     }
 
     public void SetTransform(Quaternion currRotation, Vector3 currPosition)
@@ -69,6 +71,6 @@ public class MoveCommand : ICommand
         gameObject.transform.position = position;
         gameObject.transform.rotation = rotation;
         camera.transform.localRotation = cameraRotation;
-        look.Undo();
+        look.Undo(_xRotation);
     }
 }
