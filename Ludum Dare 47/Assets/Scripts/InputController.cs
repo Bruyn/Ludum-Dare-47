@@ -9,34 +9,18 @@ public class InputController : MonoBehaviour
 {
     public PlayerMovement movementControl;
     public MouseLook mouseControl;
+    public GameObject cameraObject;
     public Authority authority;
+    public Color trailColor;
 
-    public Color recordedPointsColor;
-    public Color playedBackPointsColor;
-
-    private bool executingCommands = false;
     private List<ICommand> commands = new List<ICommand>();
     private int lastComandIdx = -1;
-    private Vector3 rewindPosition;
-    private Quaternion rewindRotation;
-
-    private List<Vector3> recordedPoints = new List<Vector3>();
-    private List<Vector3> playedBackPoints = new List<Vector3>();
 
     private float mouseX = .0f;
     private float mouseY = .0f;
     private float horizontalAxis = .0f;
     private float verticalAxis = .0f;
     private bool isJump = false;
-
-    void Start()
-    {
-        if (Application.targetFrameRate != 60)
-            Application.targetFrameRate = 60;
-
-        movementControl = GetComponent<PlayerMovement>();
-        QualitySettings.vSyncCount = 0;
-    }
 
     private void Update()
     {
@@ -50,27 +34,51 @@ public class InputController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (commands.Count > 1)
+        {
+            for (int i = 0; i < commands.Count - 1; ++i)
+            {
+                var currCommand = (MoveCommand) commands[i];
+                var nextCommand = (MoveCommand) commands[i + 1];
+                if (currCommand == null || nextCommand == null)
+                {
+                    continue;
+                }
+
+                Gizmos.color = trailColor;
+                Gizmos.DrawLine(currCommand.GetPos(), nextCommand.GetPos());
+            }
+        }
+    }
+
     public void Simulate(PLaybackMode mode)
     {
         switch (mode)
         {
             case PLaybackMode.PlayAndRecord:
-                if (authority.Enabled)
+                if (authority.Enabled && lastComandIdx > 0 && lastComandIdx < commands.Count - 1)
                 {
-                    ApplyMoveAndRotate();
-                    AddMoveCommand();
+                    commands.RemoveRange(lastComandIdx, commands.Count - lastComandIdx);
+                }
+
+                if (commands.Count == 0 || lastComandIdx >= commands.Count - 1)
+                {
+                    var command = AddMoveCommand();
+                    command.Do();
                 }
                 else
                 {
-                    TryExecuteCommand();
+                    TryDoCommand();
                 }
 
                 break;
             case PLaybackMode.FastForward:
-                TryExecuteCommand();
+                TryDoCommand();
                 break;
             case PLaybackMode.Rewind:
-                TryRestoreCommand();
+                TryUndoCommand();
                 break;
         }
 
@@ -84,69 +92,36 @@ public class InputController : MonoBehaviour
         isJump = false;
     }
 
-    private void OnDrawGizmos()
+    private MoveCommand AddMoveCommand()
     {
-        if (recordedPoints.Count > 1)
-        {
-            for (int i = 0; i < recordedPoints.Count - 1; ++i)
-            {
-                Gizmos.color = recordedPointsColor;
-                Gizmos.DrawLine(recordedPoints[i], recordedPoints[i + 1]);
-            }
-        }
-
-        if (playedBackPoints.Count > 1)
-        {
-            for (int i = 0; i < playedBackPoints.Count - 1; ++i)
-            {
-                Gizmos.color = playedBackPointsColor;
-                Gizmos.DrawLine(playedBackPoints[i], playedBackPoints[i + 1]);
-            }
-        }
-    }
-
-    private void AddMoveCommand()
-    {
-        if (lastComandIdx < commands.Count - 1)
-        {
-            commands.RemoveRange(lastComandIdx, commands.Count - lastComandIdx);
-        }
-
-        MoveCommand moveCommand = new MoveCommand(movementControl, mouseControl);
+        MoveCommand moveCommand = new MoveCommand(movementControl, mouseControl, gameObject, cameraObject);
         moveCommand.SetMovementInput(horizontalAxis, verticalAxis, isJump);
-        moveCommand.SetRotationInput(mouseX, mouseY);
+        moveCommand.SetRotationInput(mouseX, mouseY, cameraObject.transform.rotation.x);
         moveCommand.SetTransform(transform.rotation, transform.position);
         moveCommand.SetVelocity(movementControl.GetVelocity());
 
         commands.Add(moveCommand);
         lastComandIdx = commands.Count - 1;
+
+        return moveCommand;
     }
 
-    private void TryExecuteCommand()
+    private void TryDoCommand()
     {
-        if (lastComandIdx == commands.Count - 1)
+        if (lastComandIdx >= commands.Count - 1)
             return;
-
-        commands[lastComandIdx].Do();
+        
         lastComandIdx++;
+        commands[lastComandIdx].Do();
     }
 
-    private void ApplyMoveAndRotate()
+    private void TryUndoCommand()
     {
-        mouseControl.Rotate(mouseX, mouseY);
-        movementControl.Move(horizontalAxis, verticalAxis, isJump);
-    }
-
-    private void TryRestoreCommand()
-    {
-        if (lastComandIdx == 0)
+        if (lastComandIdx <= 0)
             return;
-
-        var currCommand = (MoveCommand) commands[lastComandIdx];
-
-        transform.position = currCommand.GetPos();
-        transform.rotation = currCommand.GetRot();
 
         lastComandIdx--;
+        commands[lastComandIdx].Undo();
     }
+    
 }

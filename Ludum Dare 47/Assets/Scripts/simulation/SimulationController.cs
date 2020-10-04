@@ -30,6 +30,9 @@ public class SimulationController : MonoBehaviour
 
     void Start()
     {
+        if (Application.targetFrameRate != 60)
+            Application.targetFrameRate = 60;
+        
         var simulatedObjects = GameObject.FindGameObjectsWithTag(simulatedObjectTag);
         foreach (var obj in simulatedObjects)
         {

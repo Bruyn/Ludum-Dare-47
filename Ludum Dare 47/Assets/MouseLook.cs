@@ -20,9 +20,7 @@ public class MouseLook : MonoBehaviour
     }
 
     public void Rotate(float axisX, float axisY)
-    {
-        if (!_authority.Enabled) return;
-        
+    {        
         float mouseX = axisX * mouseSensitivity;
         float mouseY = axisY * mouseSensitivity;
         
