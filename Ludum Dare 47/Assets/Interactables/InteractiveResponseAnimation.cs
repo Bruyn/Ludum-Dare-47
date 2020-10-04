@@ -17,6 +17,7 @@ public class InteractiveResponseAnimation : InteractiveResponse
     public override void DoResponseAction()
     {
         animator.Play(doAnimationName);
+        Debug.Log("Played animation");
     }
 
     public override void UndoResponseAction()

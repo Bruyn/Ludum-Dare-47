@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
@@ -6,19 +6,23 @@ using UnityEngine;
 
 public class InteractiveObject : MonoBehaviour
 {
+    [SerializeField]
+    private List<InteractiveResponse> objectsToInteract = new List<InteractiveResponse>();
+    
     public string interactionText;
     public bool isAvailableByDefault = true;
     public bool isOneTimeInteraction;
 
-    public string[] responseObjectTags;
-
     private bool lastActionIsDo;
     private bool isAvailable;
 
-    private void Awake()
+    private void Start()
     {
         isAvailable = isAvailableByDefault;
         lastActionIsDo = !isAvailable;
+        
+        if (objectsToInteract.Count == 0)
+            Debug.LogWarning(gameObject.name + " has 0 interactable objects! Set them in the editor.");
     }
     
     public virtual bool IsCanInteract()
@@ -60,28 +64,18 @@ public class InteractiveObject : MonoBehaviour
 
     private void DoInteractInternal()
     {
-        foreach (var objectTag in responseObjectTags)
-        {
-            var obj = GameObject.FindWithTag(objectTag);
-            if (obj != null)
-            {
-                obj.GetComponent<InteractiveResponse>().DoResponseAction();
-            }
-        }
+        foreach (var objectToInteract in objectsToInteract)
+            objectToInteract.DoResponseAction();
+
+        Debug.Log("Do interaction with " + gameObject.name);
     }
 
     private void UndoInteractInternal()
     {
-        foreach (var objectTag in responseObjectTags)
-        {
-            var obj = GameObject.FindWithTag(objectTag);
-            if (obj != null)
-            {
-                obj.GetComponent<InteractiveResponse>().UndoResponseAction();
-            }
-        }
+        foreach (var objectToInteract in objectsToInteract)
+            objectToInteract.UndoResponseAction();
+        Debug.Log("Undo interaction with " + gameObject.name);
     }
-    
 
     private void MakeUninteractable()
     {

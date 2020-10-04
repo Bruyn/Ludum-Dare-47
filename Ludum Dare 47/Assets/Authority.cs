@@ -11,24 +11,18 @@ public class Authority : MonoBehaviour
         set
         {
             isEnabled = value;
-            _camera.enabled = value;
-            _audioListener.enabled = value;
+            camera.enabled = value;
+            audioListener.enabled = value;
         }
     }
 
     private bool isEnabled;
-    private Camera _camera;
-    private AudioListener _audioListener;
-    
-    // Start is called before the first frame update
+    private Camera camera;
+    private AudioListener audioListener;
+
     void Awake()
     {
-        _camera = GetComponentInChildren<Camera>();
-        _audioListener = GetComponentInChildren<AudioListener>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        camera = GetComponentInChildren<Camera>();
+        audioListener = GetComponentInChildren<AudioListener>();
     }
 }
