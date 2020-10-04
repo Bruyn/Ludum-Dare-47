@@ -57,6 +57,9 @@ public class InputController : MonoBehaviour
     {
         switch (mode)
         {
+            case PLaybackMode.Pause:
+                movementControl._velocity = ((MoveCommand) commands[lastComandIdx]).velocity;
+                break;
             case PLaybackMode.PlayAndRecord:
                 if (authority.Enabled && lastComandIdx > 0 && lastComandIdx < commands.Count - 1)
                 {
@@ -96,7 +99,7 @@ public class InputController : MonoBehaviour
     {
         MoveCommand moveCommand = new MoveCommand(movementControl, mouseControl, gameObject, cameraObject);
         moveCommand.SetMovementInput(horizontalAxis, verticalAxis, isJump);
-        moveCommand.SetRotationInput(mouseX, mouseY, cameraObject.transform.rotation.x);
+        moveCommand.SetRotationInput(mouseX, mouseY, cameraObject.transform.localRotation);
         moveCommand.SetTransform(transform.rotation, transform.position);
         moveCommand.SetVelocity(movementControl.GetVelocity());
 
@@ -110,7 +113,7 @@ public class InputController : MonoBehaviour
     {
         if (lastComandIdx >= commands.Count - 1)
             return;
-        
+
         lastComandIdx++;
         commands[lastComandIdx].Do();
     }
@@ -123,5 +126,4 @@ public class InputController : MonoBehaviour
         lastComandIdx--;
         commands[lastComandIdx].Undo();
     }
-    
 }

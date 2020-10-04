@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float jumpHeigth = 3f;
 
-    private Vector3 _velocity;
+    public Vector3 _velocity;
 
     public Authority _authority;
 

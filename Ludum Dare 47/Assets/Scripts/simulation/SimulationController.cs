@@ -81,9 +81,6 @@ public class SimulationController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentMode == PLaybackMode.Pause)
-            return;
-
         foreach (var entity in simulatedEntities)
         {
             entity.TriggerSimulate(currentMode);

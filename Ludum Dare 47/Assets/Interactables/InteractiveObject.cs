@@ -21,7 +21,7 @@ public class InteractiveObject : MonoBehaviour
         lastActionIsDo = !isAvailable;
     }
     
-    public bool IsCanInteract()
+    public virtual bool IsCanInteract()
     {
         return isAvailable;
     }
