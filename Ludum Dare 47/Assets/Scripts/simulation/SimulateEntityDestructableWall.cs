@@ -4,11 +4,11 @@ using Interactables;
 using UnityEngine;
 using Random = System.Random;
 
-public class SimulateEntityDestructableObject : SimulatedEntityBase
+public class SimulateEntityDestructableWall : SimulatedEntityBase
 {
     private List<ThrowableSimulateState> states = new List<ThrowableSimulateState>();
     private int lastStateIdx = -1;
-    private ThrowableObject _throwableObject;
+    
 
     public GameObject[] cells;
 
@@ -17,20 +17,32 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
     private bool isDestroyed;
 
     private Rigidbody rb;
-    private bool collidedWithPlayer = false;
+    
     
     private void Awake()
     {
-        _throwableObject = GetComponent<ThrowableObject>();
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Player"))
+            return;
+        
+        isDestroyed = true;
+        
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.impulse.magnitude > 1)
-         {
-             isDestroyed = true;
-         }
+        
+        isDestroyed = true;
+        
+         // if (other.impulse.magnitude > 10)
+         // {
+         //
+         //    
+         // }
     }
 
     public override void TriggerSimulate(PlaybackMode mode)
@@ -38,19 +50,15 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
         switch (mode)
         {
             case PlaybackMode.Pause:
-                _throwableObject.rb.isKinematic = true;
                 isPause = true;
                 break;
 
             case PlaybackMode.PlayAndRecord:
                 if (isPause)
                 {
-                    if (!_throwableObject.taken)
-                    {
-                        _throwableObject.rb.isKinematic = false;
-                    }
+                    
 
-                    _throwableObject.rb.velocity = states[lastStateIdx].velocity;
+                    
                     isPause = false;
                 }
 
@@ -62,7 +70,6 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
                 ThrowableSimulateState state = new ThrowableSimulateState();
                 state.position = transform.position;
                 state.rotation = transform.rotation;
-                state.velocity = _throwableObject.rb.velocity;
                 state.isDestroyed = isDestroyed;
                 
                 states.Add(state);
@@ -94,9 +101,7 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
             }
         
             rb.detectCollisions = !isDestroyed;
-            rb.isKinematic = isDestroyed;
-            if (collidedWithPlayer)
-                rb.isKinematic = true;
+            rb.isKinematic = true;
             GetComponent<MeshRenderer>().enabled = !isDestroyed;
             
             
@@ -115,7 +120,6 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
         ThrowableSimulateState state = states[lastStateIdx];
         transform.position = state.position;
         transform.rotation = state.rotation;
-        _throwableObject.rb.velocity = state.velocity;
         isDestroyed = state.isDestroyed;
 
         lastStateIdx++;
@@ -130,7 +134,6 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
 
         transform.position = state.position;
         transform.rotation = state.rotation;
-        _throwableObject.rb.velocity = state.velocity;
         isDestroyed = state.isDestroyed;
         lastStateIdx--;
     }
