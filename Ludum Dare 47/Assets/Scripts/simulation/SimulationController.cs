@@ -16,10 +16,10 @@ public class SimulationController : MonoBehaviour
 {
     public static SimulationController Instance;
     
-    public KeyCode pauseToggleKey;
-    public KeyCode rewindKey;
-    public KeyCode forwardKey;
-    public KeyCode fastPlayBackKey;
+    public KeyCode pauseToggleKey = KeyCode.F;
+    public KeyCode rewindKey = KeyCode.Mouse0;
+    public KeyCode forwardKey = KeyCode.Mouse1;
+    public KeyCode fastPlayBackKey = KeyCode.LeftShift;
 
     public string simulatedObjectTag;
 

@@ -517,8 +517,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseToggleKey: 102
-  rewindKey: 276
-  forwardKey: 275
+  rewindKey: 323
+  forwardKey: 323
   fastPlayBackKey: 304
   simulatedObjectTag: simulatedEntity
   maxRecordingTimeSec: 90
