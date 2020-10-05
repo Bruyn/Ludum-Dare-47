@@ -1,10 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSwitchMng : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public static PlayerSwitchMng Instance = null;
+
+    private void Awake()
+    {
+        Debug.Log("A");
+        if (Instance == null)
+            return;
+
+        Instance = this;
+        Debug.Log("B");
+    }
+
     void Start()
     {
         _players = GameObject.FindGameObjectsWithTag("Player");
