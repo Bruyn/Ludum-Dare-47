@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
+using UnityEngine.Rendering.PostProcessing;
 
 public enum PlaybackMode
 {
@@ -15,7 +16,7 @@ public enum PlaybackMode
 public class SimulationController : MonoBehaviour
 {
     public static SimulationController Instance;
-    
+
     public KeyCode pauseToggleKey = KeyCode.F;
     public KeyCode rewindKey = KeyCode.Mouse0;
     public KeyCode forwardKey = KeyCode.Mouse1;
@@ -32,7 +33,7 @@ public class SimulationController : MonoBehaviour
     private float currentTimeInSec = 0f;
     private bool isTimeExceeded = false;
 
-    
+
     public PlaybackMode GetCurrentMode()
     {
         return currentMode;
@@ -62,8 +63,6 @@ public class SimulationController : MonoBehaviour
     {
         if (Application.targetFrameRate != 60)
             Application.targetFrameRate = 60;
-
-       
     }
 
     private void Update()
@@ -124,9 +123,8 @@ public class SimulationController : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-        
-        
-        var simulatedObjects = GameObject.FindGameObjectsWithTag(simulatedObjectTag);
+
+        var simulatedObjects = GameObject.FindObjectsOfType<SimulatedEntityBase>();
         foreach (var obj in simulatedObjects)
         {
             obj.GetComponent<SimulatedEntityBase>().TriggerSimulate(currentMode);
@@ -147,7 +145,7 @@ public class SimulationController : MonoBehaviour
 
         if (simulationStep < 0)
             simulationStep = 0;
-        
+
         currentTimeInSec = simulationStep * Time.fixedDeltaTime;
         isTimeExceeded = FloatComparer.AreEqual(currentTimeInSec, maxRecordingTimeSec, Mathf.Epsilon) ||
                          currentTimeInSec > maxRecordingTimeSec;

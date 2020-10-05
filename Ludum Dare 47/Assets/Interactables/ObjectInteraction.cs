@@ -13,6 +13,8 @@ public class ObjectInteraction : MonoBehaviour
 
     public Transform throwableObjectAttachTransform;
 
+    private SimulationController simController;
+    
     private void Awake()
     {
         var textObject = GameObject.FindWithTag("interactableTextBox");
@@ -20,6 +22,9 @@ public class ObjectInteraction : MonoBehaviour
         {
             uiInteractiveTextBox = textObject.GetComponent<Text>();
         }
+
+        var obj = GameObject.FindWithTag("simulationController"); 
+        simController = obj.GetComponent<SimulationController>();
     }
     
     public void Interact()
@@ -50,6 +55,10 @@ public class ObjectInteraction : MonoBehaviour
 
         if (throwable != null)
         {
+            var sim = obj.GetComponent<SimulateEntityThrowableObject>();
+            if (sim == null && simController.GetCurrentMode() != PlaybackMode.PlayAndRecord)
+                return;
+
             throwable.Take();
             otherInteractive.transform.parent = throwableObjectAttachTransform;
             otherInteractive.transform.localPosition = Vector3.zero;
