@@ -1,13 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Interactables
 {
     public class ThrowableObject : InteractiveObject, IThrowable
     {
-        public Rigidbody rb;
+        [NonSerialized] public Rigidbody rb;
 
         public bool taken;
-        
+
+        private void Awake()
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+
         public void Take()
         {
             rb.isKinematic = true;

@@ -9,6 +9,7 @@ public class ThrowableSimulateState
     public Vector3 position;
     public Quaternion rotation;
     public Vector3 velocity;
+    public bool isDestroyed;
 }
 
 public class SimulateEntityThrowableObject : SimulatedEntityBase
@@ -18,12 +19,13 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
     public ThrowableObject ThrowableObject;
 
     private bool isPause;
+    
 
-    private void Start()
+    private void Awake()
     {
         ThrowableObject = GetComponent<ThrowableObject>();
     }
-
+    
     public override void TriggerSimulate(PlaybackMode mode)
     {
         switch (mode)
