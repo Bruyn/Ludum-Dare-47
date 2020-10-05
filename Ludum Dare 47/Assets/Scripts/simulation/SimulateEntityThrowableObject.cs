@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Interactables;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
     public ThrowableObject ThrowableObject;
     
     private bool isPause;
+
+    private void Start()
+    {
+        ThrowableObject = GetComponent<ThrowableObject>();
+    }
 
     public override void TriggerSimulate(PlaybackMode mode)
     {

@@ -15,10 +15,6 @@ public class InteractiveObject : MonoBehaviour
 
     private bool lastActionIsDo;
     private bool isAvailable;
-    
-    private List<int> doIdxs = new List<int>();
-    private List<int> undoIdxs = new List<int>();
-    private int currentId;
 
     private void Start()
     {
@@ -27,21 +23,6 @@ public class InteractiveObject : MonoBehaviour
         
         if (objectsToInteract.Count == 0)
             Debug.LogWarning(gameObject.name + " has 0 interactable objects! Set them in the editor.");
-    }
-
-    private void Update()
-    {
-        /*
-        var a = PlayerSwitchMng.Instance;
-        var currentAuth = PlayerSwitchMng.Instance.GetCurrentAuthority(); 
-        if (currentAuth == null)
-            return;
-        currentId = currentAuth.GetComponent<InputController>().GetCurrentCommandIdx();
-        if (doIdxs.Contains(currentId))
-            SimulateDo();
-        if (undoIdxs.Contains(currentId))
-            SimulateUndo();
-        */    
     }
 
     public virtual bool IsCanInteract()
@@ -83,7 +64,6 @@ public class InteractiveObject : MonoBehaviour
 
     private void DoInteractInternal()
     {
-        doIdxs.Add(currentId);
         foreach (var objectToInteract in objectsToInteract)
             objectToInteract.DoResponseAction();
 
@@ -92,27 +72,10 @@ public class InteractiveObject : MonoBehaviour
 
     private void UndoInteractInternal()
     {
-        undoIdxs.Add(currentId);
         foreach (var objectToInteract in objectsToInteract)
             objectToInteract.UndoResponseAction();
 
         Debug.Log("Undo interaction with " + gameObject.name);
-    }
-    
-    private void SimulateDo()
-    {
-        foreach (var objectToInteract in objectsToInteract)
-            objectToInteract.DoResponseAction();
-
-        Debug.Log("Simulated do with " + gameObject.name);
-    }
-
-    private void SimulateUndo()
-    {
-        foreach (var objectToInteract in objectsToInteract)
-            objectToInteract.UndoResponseAction();
-
-        Debug.Log("Simulated undo with " + gameObject.name);
     }
 
     private void MakeUninteractable()

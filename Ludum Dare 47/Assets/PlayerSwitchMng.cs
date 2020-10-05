@@ -5,26 +5,18 @@ using UnityEngine;
 
 public class PlayerSwitchMng : MonoBehaviour
 {
-
-    public static PlayerSwitchMng Instance = null;
-
-    private void Awake()
+    private void OnValidate()
     {
-        Debug.Log("A");
-        if (Instance == null)
-            return;
-
-        Instance = this;
-        Debug.Log("B");
+        if (players.Count == 0)
+            players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
     }
 
     void Start()
     {
-        _players = GameObject.FindGameObjectsWithTag("Player");
         SelectPlayer(0);
     }
 
-    private GameObject[] _players;
+    [SerializeField] private List<GameObject> players = new List<GameObject>();
     private int _currentPlayerIndex = -1;
 
     public GameObject GetCurrentAuthority()
@@ -32,7 +24,7 @@ public class PlayerSwitchMng : MonoBehaviour
         if (_currentPlayerIndex < 0)
             return null;
 
-        return _players[_currentPlayerIndex];
+        return players[_currentPlayerIndex];
     }
     
     void Update()
@@ -56,7 +48,7 @@ public class PlayerSwitchMng : MonoBehaviour
 
     int GetMaxPlayerIndex()
     {
-        return _players.Length - 1;
+        return players.Count - 1;
     }
     
     void SelectPlayer(int playerIndex)
@@ -66,12 +58,12 @@ public class PlayerSwitchMng : MonoBehaviour
             return;
         }
 
-        foreach (var player in _players)
+        foreach (var player in players)
         {
             player.GetComponent<Authority>().Enabled = false;
         }
 
-        _players[playerIndex].GetComponent<Authority>().Enabled = true;
+        players[playerIndex].GetComponent<Authority>().Enabled = true;
         _currentPlayerIndex = playerIndex;
     }
 }
