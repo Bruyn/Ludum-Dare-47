@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Interactables;
 using UnityEngine;
 
 
@@ -13,8 +14,8 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
 {
     private List<ThrowableSimulateState> states = new List<ThrowableSimulateState>();
     private int lastStateIdx = -1;
-
-    public Rigidbody rb;
+    public ThrowableObject ThrowableObject;
+    
     private bool isPause;
 
     public override void TriggerSimulate(PlaybackMode mode)
@@ -22,15 +23,19 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
         switch (mode)
         {
             case PlaybackMode.Pause:
-                rb.isKinematic = true;
+                ThrowableObject.rb.isKinematic = true;
                 isPause = true;
                 break;
 
             case PlaybackMode.PlayAndRecord:
                 if (isPause)
                 {
-                    rb.isKinematic = false;
-                    rb.velocity = states[lastStateIdx].velocity;
+                    if (!ThrowableObject.taken)
+                    {
+                        ThrowableObject.rb.isKinematic = false;                        
+                    }
+                    
+                    ThrowableObject.rb.velocity = states[lastStateIdx].velocity;
                     isPause = false;
                 }
                 
@@ -42,7 +47,7 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
                 ThrowableSimulateState state = new ThrowableSimulateState();
                 state.position = transform.position;
                 state.rotation = transform.rotation;
-                state.velocity = rb.velocity;
+                state.velocity = ThrowableObject.rb.velocity;
                 states.Add(state);
 
                 lastStateIdx = states.Count - 1;
@@ -65,7 +70,7 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
         ThrowableSimulateState state = states[lastStateIdx];
         transform.position = state.position;
         transform.rotation = state.rotation;
-        rb.velocity = state.velocity;
+        ThrowableObject.rb.velocity = state.velocity;
 
         lastStateIdx++;
     }
@@ -79,7 +84,7 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
 
         transform.position = state.position;
         transform.rotation = state.rotation;
-        rb.velocity = state.velocity;
+        ThrowableObject.rb.velocity = state.velocity;
         lastStateIdx--;
     }
 }

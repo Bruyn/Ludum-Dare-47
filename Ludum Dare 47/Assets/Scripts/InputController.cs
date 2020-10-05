@@ -9,6 +9,7 @@ public class InputController : MonoBehaviour
 {
     public PlayerMovement movementControl;
     public MouseLook mouseControl;
+    public ObjectInteraction objectInteraction;
     public GameObject cameraObject;
     public Authority authority;
     public Color trailColor;
@@ -21,6 +22,7 @@ public class InputController : MonoBehaviour
     private float horizontalAxis = .0f;
     private float verticalAxis = .0f;
     private bool isJump = false;
+    private bool isInteract = false;
 
     private void Update()
     {
@@ -31,6 +33,7 @@ public class InputController : MonoBehaviour
             horizontalAxis = Input.GetAxis("Horizontal");
             verticalAxis = Input.GetAxis("Vertical");
             isJump = Input.GetButton("Jump") || isJump;
+            isInteract = Input.GetButtonDown("Fire3") || isInteract;
         }
     }
 
@@ -40,8 +43,8 @@ public class InputController : MonoBehaviour
         {
             for (int i = 0; i < commands.Count - 1; ++i)
             {
-                var currCommand = (MoveCommand) commands[i];
-                var nextCommand = (MoveCommand) commands[i + 1];
+                var currCommand = commands[i] as MoveCommand;
+                var nextCommand = commands[i + 1] as MoveCommand;
                 if (currCommand == null || nextCommand == null)
                 {
                     continue;
@@ -57,7 +60,7 @@ public class InputController : MonoBehaviour
     {
         return lastComandIdx;
     }
-    
+
     public void Simulate(PlaybackMode mode)
     {
         switch (mode)
@@ -73,8 +76,8 @@ public class InputController : MonoBehaviour
 
                 if (commands.Count == 0 || lastComandIdx >= commands.Count - 1)
                 {
-                    var command = AddMoveCommand();
-                    command.Do();
+                    var moveCommand = AddMoveCommand();
+                    moveCommand.Do();
                 }
                 else
                 {
@@ -98,14 +101,15 @@ public class InputController : MonoBehaviour
         mouseX = .0f;
         mouseY = .0f;
         isJump = false;
+        isInteract = false;
         horizontalAxis = 0f;
         verticalAxis = 0f;
     }
 
     private MoveCommand AddMoveCommand()
     {
-        MoveCommand moveCommand = new MoveCommand(movementControl, mouseControl, gameObject, cameraObject);
-        moveCommand.SetMovementInput(horizontalAxis, verticalAxis, isJump);
+        MoveCommand moveCommand = new MoveCommand(movementControl, mouseControl, gameObject, cameraObject, objectInteraction);
+        moveCommand.SetMovementInput(horizontalAxis, verticalAxis, isJump, isInteract);
         moveCommand.SetRotationInput(mouseX, mouseY, cameraObject.transform.localRotation);
         moveCommand.SetTransform(transform.rotation, transform.position);
         moveCommand.SetVelocity(movementControl.GetVelocity());

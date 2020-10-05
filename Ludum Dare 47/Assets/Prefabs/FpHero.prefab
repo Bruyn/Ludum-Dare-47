@@ -138,9 +138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementControl: {fileID: 1781282350450369826}
   mouseControl: {fileID: 1781282350919544791}
+  objectInteraction: {fileID: 1096177611}
   cameraObject: {fileID: 1781282350919544785}
   authority: {fileID: 404595589}
-  trailColor: {r: 0.6132076, g: 0.20825917, b: 0.24478452, a: 1}
+  trailColor: {r: 1, g: 0, b: 0.909544, a: 1}
 --- !u!114 &404595589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84c3aba18a84ac4bb1b8b187a7dd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  authority: {fileID: 404595589}
   playerBody: {fileID: 1781282350450369824}
   mouseSensitivity: 2
   xRotation: 0
