@@ -27,6 +27,11 @@ public class InteractiveObject : MonoBehaviour
 
     public virtual bool IsCanInteract()
     {
+        foreach (var obj in objectsToInteract)
+        {
+            if (!obj.IsAvailable())
+                return false;
+        }
         return isAvailable;
     }
     

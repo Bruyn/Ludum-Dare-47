@@ -16,7 +16,7 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
     private List<ThrowableSimulateState> states = new List<ThrowableSimulateState>();
     private int lastStateIdx = -1;
     public ThrowableObject ThrowableObject;
-    
+
     private bool isPause;
 
     private void Start()
@@ -38,34 +38,63 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
                 {
                     if (!ThrowableObject.taken)
                     {
-                        ThrowableObject.rb.isKinematic = false;                        
+                        ThrowableObject.rb.isKinematic = false;
                     }
-                    
+
                     ThrowableObject.rb.velocity = states[lastStateIdx].velocity;
                     isPause = false;
                 }
-                
+
                 if (lastStateIdx < states.Count - 1)
                 {
                     states.RemoveRange(lastStateIdx, states.Count - lastStateIdx);
                 }
-
-                ThrowableSimulateState state = new ThrowableSimulateState();
-                state.position = transform.position;
-                state.rotation = transform.rotation;
-                state.velocity = ThrowableObject.rb.velocity;
-                states.Add(state);
-
-                lastStateIdx = states.Count - 1;
+                AddState();
 
                 break;
             case PlaybackMode.FastForward:
-                TryExecuteCommand();
+                if (states.Count == 0 || lastStateIdx >= states.Count - 1)
+                {
+                    if (isPause)
+                    {
+                        if (!ThrowableObject.taken)
+                        {
+                            ThrowableObject.rb.isKinematic = false;
+                        }
+
+                        if (states.Count == 0)
+                        {
+                            ThrowableObject.rb.velocity = Vector3.zero;
+                        }
+                        else
+                        {
+                            ThrowableObject.rb.velocity = states[lastStateIdx].velocity;
+                        }
+                        isPause = false;
+                    }
+                    AddState();
+                }
+                else
+                {
+                    TryExecuteCommand();
+                }
+
                 break;
             case PlaybackMode.Rewind:
                 TryRestoreCommand();
                 break;
         }
+    }
+
+    private void AddState()
+    {
+        ThrowableSimulateState state = new ThrowableSimulateState();
+        state.position = transform.position;
+        state.rotation = transform.rotation;
+        state.velocity = ThrowableObject.rb.velocity;
+        states.Add(state);
+
+        lastStateIdx = states.Count - 1;
     }
 
     private void TryExecuteCommand()
