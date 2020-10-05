@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
 public enum PlaybackMode
 {
@@ -22,8 +23,14 @@ public class SimulationController : MonoBehaviour
 
     public string simulatedObjectTag;
 
+    public float maxRecordingTimeSec = 60f;
+
     private PlaybackMode currentMode = PlaybackMode.PlayAndRecord;
     private bool isFastPlayBack = false;
+
+    private int simulationStep = -1;
+    private float currentTimeInSec = 0f;
+    private bool isTimeExceeded = false;
 
     private List<SimulatedEntityBase> simulatedEntities = new List<SimulatedEntityBase>();
 
@@ -42,11 +49,21 @@ public class SimulationController : MonoBehaviour
         Instance = this;
     }
 
+    public float GetCurrentTimeIn()
+    {
+        return Mathf.Clamp(currentTimeInSec, 0f, maxRecordingTimeSec);
+    }
+
+    public float GetSimulationProgress()
+    {
+        return Mathf.Clamp(currentTimeInSec, 0f, maxRecordingTimeSec) / maxRecordingTimeSec;
+    }
+
     void Start()
     {
         if (Application.targetFrameRate != 60)
             Application.targetFrameRate = 60;
-        
+
         var simulatedObjects = GameObject.FindGameObjectsWithTag(simulatedObjectTag);
         foreach (var obj in simulatedObjects)
         {
@@ -56,16 +73,23 @@ public class SimulationController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(pauseToggleKey))
+        if (Input.GetKeyDown(pauseToggleKey) || isTimeExceeded)
         {
-            switch (currentMode)
+            if (isTimeExceeded)
             {
-                case PlaybackMode.Pause:
-                    currentMode = PlaybackMode.PlayAndRecord;
-                    break;
-                case PlaybackMode.PlayAndRecord:
-                    currentMode = PlaybackMode.Pause;
-                    break;
+                currentMode = PlaybackMode.Pause;
+            }
+            else
+            {
+                switch (currentMode)
+                {
+                    case PlaybackMode.Pause:
+                        currentMode = PlaybackMode.PlayAndRecord;
+                        break;
+                    case PlaybackMode.PlayAndRecord:
+                        currentMode = PlaybackMode.Pause;
+                        break;
+                }
             }
         }
 
@@ -82,7 +106,7 @@ public class SimulationController : MonoBehaviour
             currentMode = PlaybackMode.Rewind;
         }
 
-        if (Input.GetKey(forwardKey))
+        if (!isTimeExceeded && Input.GetKey(forwardKey))
         {
             currentMode = PlaybackMode.FastForward;
         }
@@ -110,5 +134,22 @@ public class SimulationController : MonoBehaviour
         {
             entity.TriggerSimulate(currentMode);
         }
+
+        switch (currentMode)
+        {
+            case PlaybackMode.PlayAndRecord:
+                simulationStep++;
+                break;
+            case PlaybackMode.FastForward:
+                simulationStep++;
+                break;
+            case PlaybackMode.Rewind:
+                simulationStep--;
+                break;
+        }
+        
+        currentTimeInSec = simulationStep * Time.fixedDeltaTime;
+        isTimeExceeded = FloatComparer.AreEqual(currentTimeInSec, maxRecordingTimeSec, Mathf.Epsilon) ||
+                         currentTimeInSec > maxRecordingTimeSec;
     }
 }

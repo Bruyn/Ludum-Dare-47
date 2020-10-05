@@ -69,24 +69,11 @@ public class InputController : MonoBehaviour
                 movementControl._velocity = ((MoveCommand) commands[lastComandIdx]).velocity;
                 break;
             case PlaybackMode.PlayAndRecord:
-                if (authority.Enabled && lastComandIdx > 0 && lastComandIdx < commands.Count - 1)
-                {
-                    commands.RemoveRange(lastComandIdx, commands.Count - lastComandIdx);
-                }
-
-                if (commands.Count == 0 || lastComandIdx >= commands.Count - 1)
-                {
-                    var moveCommand = AddMoveCommand();
-                    moveCommand.Do();
-                }
-                else
-                {
-                    TryDoCommand();
-                }
-
+                CutExcessCommands();
+                ExecuteOrRecord();
                 break;
             case PlaybackMode.FastForward:
-                TryDoCommand();
+                ExecuteOrRecord();
                 break;
             case PlaybackMode.Rewind:
                 TryUndoCommand();
@@ -94,6 +81,27 @@ public class InputController : MonoBehaviour
         }
 
         ResetInput();
+    }
+
+    private void CutExcessCommands()
+    {
+        if (authority.Enabled && lastComandIdx > 0 && lastComandIdx < commands.Count - 1)
+        {
+            commands.RemoveRange(lastComandIdx, commands.Count - lastComandIdx);
+        }
+    }
+
+    private void ExecuteOrRecord()
+    {
+        if (commands.Count == 0 || lastComandIdx >= commands.Count - 1)
+        {
+            var moveCommand = AddMoveCommand();
+            moveCommand.Do();
+        }
+        else
+        {
+            TryDoCommand();
+        }
     }
 
     private void ResetInput()
@@ -108,7 +116,8 @@ public class InputController : MonoBehaviour
 
     private MoveCommand AddMoveCommand()
     {
-        MoveCommand moveCommand = new MoveCommand(movementControl, mouseControl, gameObject, cameraObject, objectInteraction);
+        MoveCommand moveCommand =
+            new MoveCommand(movementControl, mouseControl, gameObject, cameraObject, objectInteraction);
         moveCommand.SetMovementInput(horizontalAxis, verticalAxis, isJump, isInteract);
         moveCommand.SetRotationInput(mouseX, mouseY, cameraObject.transform.localRotation);
         moveCommand.SetTransform(transform.rotation, transform.position);
