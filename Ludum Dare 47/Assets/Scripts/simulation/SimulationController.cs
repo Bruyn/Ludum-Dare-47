@@ -64,11 +64,7 @@ public class SimulationController : MonoBehaviour
         if (Application.targetFrameRate != 60)
             Application.targetFrameRate = 60;
 
-        var simulatedObjects = GameObject.FindGameObjectsWithTag(simulatedObjectTag);
-        foreach (var obj in simulatedObjects)
-        {
-            simulatedEntities.Add(obj.GetComponent<SimulatedEntityBase>());
-        }
+        simulatedEntities = new List<SimulatedEntityBase>(GameObject.FindObjectsOfType<SimulatedEntityBase>());
     }
 
     private void Update()
