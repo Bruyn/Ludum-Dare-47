@@ -147,6 +147,9 @@ public class SimulationController : MonoBehaviour
                 simulationStep--;
                 break;
         }
+
+        if (simulationStep < 0)
+            simulationStep = 0;
         
         currentTimeInSec = simulationStep * Time.fixedDeltaTime;
         isTimeExceeded = FloatComparer.AreEqual(currentTimeInSec, maxRecordingTimeSec, Mathf.Epsilon) ||
