@@ -17,6 +17,12 @@ public class SimulateEntityObject : SimulatedEntityBase
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        states.Clear();
+        lastStateIdx = -1;
+    }
+
     public override void TriggerSimulate(PlaybackMode mode)
     {
         switch (mode)
@@ -27,7 +33,7 @@ public class SimulateEntityObject : SimulatedEntityBase
                 break;
 
             case PlaybackMode.PlayAndRecord:
-                if (isPause)
+                if (isPause && states.Count > 0)
                 {
                     _rigidbody.isKinematic = false;
                     _rigidbody.velocity = states[lastStateIdx].velocity;
@@ -47,6 +53,7 @@ public class SimulateEntityObject : SimulatedEntityBase
                 {
                     if (isPause)
                     {
+                        _rigidbody.isKinematic = false;
                         if (states.Count == 0)
                         {
                             _rigidbody.velocity = Vector3.zero;
@@ -68,6 +75,7 @@ public class SimulateEntityObject : SimulatedEntityBase
 
                 break;
             case PlaybackMode.Rewind:
+                _rigidbody.isKinematic = true;
                 TryRestoreCommand();
                 break;
         }

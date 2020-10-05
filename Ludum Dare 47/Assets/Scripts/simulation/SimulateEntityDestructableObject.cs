@@ -17,7 +17,6 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
     private bool isDestroyed;
 
     private Rigidbody rb;
-    private bool collidedWithPlayer = false;
     
     private void Awake()
     {
@@ -59,19 +58,37 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
                     states.RemoveRange(lastStateIdx, states.Count - lastStateIdx);
                 }
 
-                ThrowableSimulateState state = new ThrowableSimulateState();
-                state.position = transform.position;
-                state.rotation = transform.rotation;
-                state.velocity = _throwableObject.rb.velocity;
-                state.isDestroyed = isDestroyed;
-                
-                states.Add(state);
-
-                lastStateIdx = states.Count - 1;
+                AddState();
 
                 break;
             case PlaybackMode.FastForward:
-                TryExecuteCommand();
+                if (states.Count == 0 || lastStateIdx >= states.Count - 1)
+                {
+                    if (isPause)
+                    {
+                        if (!_throwableObject.taken)
+                        {
+                            _throwableObject.rb.isKinematic = false;
+                        }
+
+                        if (states.Count == 0)
+                        {
+                            _throwableObject.rb.velocity = Vector3.zero;
+                        }
+                        else
+                        {
+                            _throwableObject.rb.velocity = states[lastStateIdx].velocity;
+                        }
+
+                        isPause = false;
+                    }
+
+                    AddState();
+                }
+                else
+                {
+                    TryExecuteCommand();
+                }
                 break;
             case PlaybackMode.Rewind:
                 TryRestoreCommand();
@@ -95,14 +112,22 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
         
             rb.detectCollisions = !isDestroyed;
             rb.isKinematic = isDestroyed;
-            if (collidedWithPlayer)
-                rb.isKinematic = true;
             GetComponent<MeshRenderer>().enabled = !isDestroyed;
-            
-            
-            
             currentIsDestroy = isDestroyed;
         }
+    }
+
+    private void AddState()
+    {
+        ThrowableSimulateState state = new ThrowableSimulateState();
+        state.position = transform.position;
+        state.rotation = transform.rotation;
+        state.velocity = _throwableObject.rb.velocity;
+        state.isDestroyed = isDestroyed;
+                
+        states.Add(state);
+
+        lastStateIdx = states.Count - 1;
     }
 
     private bool currentIsDestroy;

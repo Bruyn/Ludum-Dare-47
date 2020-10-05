@@ -55,17 +55,17 @@ public class ObjectInteraction : MonoBehaviour
 
         if (throwable != null)
         {
-            var sim = obj.GetComponent<SimulateEntityThrowableObject>();
+            var sim = obj.GetComponent<SimulatedEntityBase>();
             if (sim == null && simController.GetCurrentMode() != PlaybackMode.PlayAndRecord)
                 return;
-
+            
             throwable.Take();
             otherInteractive.transform.parent = throwableObjectAttachTransform;
             otherInteractive.transform.localPosition = Vector3.zero;
             _currentThrowable = throwable;
             return;
         }
-
+        
         otherInteractive.TryDoInteract();
     }
 

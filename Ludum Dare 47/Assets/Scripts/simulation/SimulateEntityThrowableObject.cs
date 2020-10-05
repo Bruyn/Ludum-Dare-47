@@ -19,13 +19,13 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
     public ThrowableObject ThrowableObject;
 
     private bool isPause;
-    
+
 
     private void Awake()
     {
         ThrowableObject = GetComponent<ThrowableObject>();
     }
-    
+
     public override void TriggerSimulate(PlaybackMode mode)
     {
         switch (mode)
@@ -51,6 +51,7 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
                 {
                     states.RemoveRange(lastStateIdx, states.Count - lastStateIdx);
                 }
+
                 AddState();
 
                 break;
@@ -72,8 +73,10 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
                         {
                             ThrowableObject.rb.velocity = states[lastStateIdx].velocity;
                         }
+
                         isPause = false;
                     }
+
                     AddState();
                 }
                 else
@@ -83,6 +86,7 @@ public class SimulateEntityThrowableObject : SimulatedEntityBase
 
                 break;
             case PlaybackMode.Rewind:
+                ThrowableObject.rb.isKinematic = true;
                 TryRestoreCommand();
                 break;
         }

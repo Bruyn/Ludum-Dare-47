@@ -73,6 +73,7 @@ public class InputController : MonoBehaviour
                 ExecuteOrRecord();
                 break;
             case PlaybackMode.FastForward:
+                ResetInput();
                 ExecuteOrRecord();
                 break;
             case PlaybackMode.Rewind:
