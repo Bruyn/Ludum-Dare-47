@@ -7,37 +7,29 @@ using System;
 
 public class TimeLineScript : MonoBehaviour
 {
-    public float timeLimitSec = 60f;
     public Text timeTextBox;
     public Slider progressSlider;
     
-    private PlayerSwitchMng playersManager;
+    private SimulationController _simulationController;
 
     void Start()
     {
-        var mngObject = GameObject.FindWithTag("playerSwitchManager");
+        var mngObject = GameObject.FindWithTag("simulationController");
         if (mngObject != null)
         {
-            playersManager = mngObject.GetComponent<PlayerSwitchMng>();
+            _simulationController = mngObject.GetComponent<SimulationController>();
         }
     }
 
     void Update()
     {
-        if (playersManager == null)
+        if (_simulationController == null)
             return;
 
-        var currentAuth = playersManager.GetCurrentAuthority();
-        if (currentAuth == null)
-            return;
-
-        var inputController = currentAuth.GetComponent<InputController>();
-        var commandIdx = inputController.GetCurrentCommandIdx();
-        var currTimeIn = Time.fixedDeltaTime * commandIdx;
-        
-        progressSlider.value = currTimeIn / timeLimitSec;
+        var currTimeIn = _simulationController.GetCurrentTimeIn();
         TimeSpan timeSpan = TimeSpan.FromSeconds(currTimeIn);
         
+        progressSlider.value = _simulationController.GetSimulationProgress();
         timeTextBox.text = string.Format("{0:D2}:{1:D2}:{2:D2}", timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds);
     }
 }
