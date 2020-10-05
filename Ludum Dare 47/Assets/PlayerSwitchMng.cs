@@ -8,7 +8,9 @@ public class PlayerSwitchMng : MonoBehaviour
     private void OnValidate()
     {
         if (players.Count == 0)
+        {
             players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+        }
     }
 
     void Start()

@@ -32,8 +32,7 @@ public class SimulationController : MonoBehaviour
     private float currentTimeInSec = 0f;
     private bool isTimeExceeded = false;
 
-    private List<SimulatedEntityBase> simulatedEntities = new List<SimulatedEntityBase>();
-
+    
     public PlaybackMode GetCurrentMode()
     {
         return currentMode;
@@ -64,7 +63,7 @@ public class SimulationController : MonoBehaviour
         if (Application.targetFrameRate != 60)
             Application.targetFrameRate = 60;
 
-        simulatedEntities = new List<SimulatedEntityBase>(GameObject.FindObjectsOfType<SimulatedEntityBase>());
+       
     }
 
     private void Update()
@@ -126,9 +125,11 @@ public class SimulationController : MonoBehaviour
             Time.timeScale = 1;
         }
         
-        foreach (var entity in simulatedEntities)
+        
+        var simulatedObjects = GameObject.FindGameObjectsWithTag(simulatedObjectTag);
+        foreach (var obj in simulatedObjects)
         {
-            entity.TriggerSimulate(currentMode);
+            obj.GetComponent<SimulatedEntityBase>().TriggerSimulate(currentMode);
         }
 
         switch (currentMode)
