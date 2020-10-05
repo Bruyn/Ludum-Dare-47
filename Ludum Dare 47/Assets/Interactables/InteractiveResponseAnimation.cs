@@ -7,6 +7,7 @@ public class InteractiveResponseAnimation : InteractiveResponse
 {
     public string doAnimationName;
     public string undoAnimationName;
+    
     private Animator _animator;
 
     private void Start()
@@ -27,14 +28,6 @@ public class InteractiveResponseAnimation : InteractiveResponse
 
     public override bool IsAvailable()
     {
-        // var m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        // var m_CurrentClipLength = m_CurrentClipInfo[0].clip.length;
-        // var m_ClipName = m_CurrentClipInfo[0].clip.name;
-
-        var info = _animator.GetNextAnimatorStateInfo(0);
-        var nameHash = info.fullPathHash;
-        var value = info.IsName("IDLE");
-        var tag = info.IsTag("IDLE");
-        return true;
+        return _animator.GetCurrentAnimatorStateInfo(0).IsName("layer.IDLE");
     }
 }
