@@ -13,6 +13,8 @@ public enum PlaybackMode
 
 public class SimulationController : MonoBehaviour
 {
+    public static SimulationController Instance;
+    
     public KeyCode pauseToggleKey;
     public KeyCode rewindKey;
     public KeyCode forwardKey;
@@ -33,6 +35,11 @@ public class SimulationController : MonoBehaviour
     public bool IsFastPlayBack()
     {
         return isFastPlayBack;
+    }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
     void Start()
