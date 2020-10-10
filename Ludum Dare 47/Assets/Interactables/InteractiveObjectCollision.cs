@@ -5,26 +5,34 @@ using UnityEngine;
 public class InteractiveObjectCollision : InteractiveObject
 {
     private List<GameObject> objectInside = new List<GameObject>();
-    
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("simulatedEntity"))
-            return;
-        
         if (IsCanInteract() && objectInside.Count == 0)
         {
             TryDoInteract();
         }
-        
-        objectInside.Add(other.gameObject);
+
+        if (!objectInside.Contains(other.gameObject))
+            objectInside.Add(other.gameObject);
+    }
+
+    private void Update()
+    {
+        for (int i = objectInside.Count - 1; i >= 0; i--)
+        {
+            if (!objectInside[i].activeSelf)
+                objectInside.Remove(objectInside[i]);
+            
+            if (objectInside.Count == 0)
+                TryDoInteract();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("simulatedEntity"))
-            return;
-
         objectInside.Remove(other.gameObject);
+
         if (objectInside.Count > 0)
             return;
 
