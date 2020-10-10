@@ -675,13 +675,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
 --- !u!114 &151617146 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 151617145}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &151617147 stripped
@@ -2262,6 +2262,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7400005
@@ -5695,13 +5703,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
 --- !u!114 &1112084550 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 1112084549}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1112084551 stripped
@@ -6792,6 +6800,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.64
@@ -7570,13 +7586,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
 --- !u!114 &1478217737 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 1478217736}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1478217738 stripped
@@ -7659,13 +7675,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
 --- !u!114 &1490193954 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 1490193953}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1490193955 stripped
@@ -9149,13 +9165,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
 --- !u!114 &1672083622 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 1672083621}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1672083623 stripped
@@ -9238,13 +9254,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
 --- !u!114 &1717146868 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 1717146867}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1717146869 stripped
@@ -10560,7 +10576,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1023540
+  m_Name: pb_Mesh-281460
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11678,7 +11694,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1023312
+  m_Name: pb_Mesh-281230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
