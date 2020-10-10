@@ -15,14 +15,21 @@ public class SimulateEntityObject : SimulatedEntityBase
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        defaultLocalPostion = transform.localPosition;
     }
 
+
+    private Vector3 defaultLocalPostion;
+    
     private void OnEnable()
     {
+        isPause = false;
         states.Clear();
         lastStateIdx = -1;
+        transform.localPosition = defaultLocalPostion;
+        _rigidbody.isKinematic = false;
     }
-
+    
     public override void TriggerSimulate(PlaybackMode mode)
     {
         switch (mode)
@@ -107,7 +114,7 @@ public class SimulateEntityObject : SimulatedEntityBase
 
     private void TryRestoreCommand()
     {
-        if (lastStateIdx == 0)
+        if (lastStateIdx <= 0)
             return;
 
         ThrowableSimulateState state = states[lastStateIdx];

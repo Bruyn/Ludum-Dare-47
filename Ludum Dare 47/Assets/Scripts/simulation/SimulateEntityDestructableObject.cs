@@ -26,10 +26,7 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.impulse.magnitude > 0.5)
-        {
-            isDestroyed = true;
-        }
+        isDestroyed = true;
     }
     
     public override void TriggerSimulate(PlaybackMode mode)
@@ -46,7 +43,7 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
                 {
                     if (!_throwableObject.taken)
                     {
-                        _throwableObject.rb.isKinematic = false;
+                        _throwableObject.rb.isKinematic = isDestroyed;
                     }
 
                     _throwableObject.rb.velocity = states[lastStateIdx].velocity;
@@ -68,7 +65,7 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
                     {
                         if (!_throwableObject.taken)
                         {
-                            _throwableObject.rb.isKinematic = false;
+                            _throwableObject.rb.isKinematic = isDestroyed;
                         }
 
                         if (states.Count == 0)
@@ -102,13 +99,8 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
             foreach (var cell in cells)
             {
                 cell.SetActive(isDestroyed);
-
-                //float min = 0;
-                //float max = 1;
-                //var myVector = new Vector3(Random.Range(min, max), Random.Range(min, max), UnityEngine.Random.Range(min, max))
-
                 cell.GetComponent<Rigidbody>().velocity = rb.velocity;
-                //cell.GetComponent<Rigidbody>().velocity = myVector;
+                //cell.GetComponent<Rigidbody>().velocity = new Vector3(0, 20, 0);
             }
 
             rb.detectCollisions = !isDestroyed;
@@ -149,6 +141,8 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
 
     private void TryRestoreCommand()
     {
+        _throwableObject.rb.isKinematic = true;
+        
         if (lastStateIdx == 0)
             return;
 
