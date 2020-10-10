@@ -4625,7 +4625,7 @@ Transform:
   - {fileID: 1033962602}
   - {fileID: 963256406}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1220495203
 Mesh:
@@ -5195,6 +5195,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.768
@@ -7390,6 +7398,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756852915982465764, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
       propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756852916380707251, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
+      propertyPath: isActiveOnStart
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7756852916475150462, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}

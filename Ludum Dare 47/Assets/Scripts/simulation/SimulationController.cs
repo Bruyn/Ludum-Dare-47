@@ -17,22 +17,32 @@ public class SimulationController : MonoBehaviour
 {
     public static SimulationController Instance;
 
+    public bool isActiveOnStart = true;
+
     public KeyCode pauseToggleKey = KeyCode.F;
     public KeyCode rewindKey = KeyCode.Mouse0;
     public KeyCode forwardKey = KeyCode.Mouse1;
     public KeyCode fastPlayBackKey = KeyCode.LeftShift;
 
-    public string simulatedObjectTag;
-
     public float maxRecordingTimeSec = 60f;
 
     private PlaybackMode currentMode = PlaybackMode.PlayAndRecord;
     private bool isFastPlayBack = false;
+    private bool isActive = false;
 
     private int simulationStep = -1;
     private float currentTimeInSec = 0f;
     private bool isTimeExceeded = false;
 
+    public void ActivateSimulation()
+    {
+        isActive = true;
+    }
+
+    public bool IsSimulationActive()
+    {
+        return isActive;
+    }
 
     public PlaybackMode GetCurrentMode()
     {
@@ -63,10 +73,16 @@ public class SimulationController : MonoBehaviour
     {
         if (Application.targetFrameRate != 60)
             Application.targetFrameRate = 60;
+
+        if (isActiveOnStart)
+            ActivateSimulation();
     }
 
     private void Update()
     {
+        if (!IsSimulationActive())
+            return;
+
         if (Input.GetKeyDown(pauseToggleKey) || isTimeExceeded)
         {
             if (isTimeExceeded)

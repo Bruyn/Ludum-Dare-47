@@ -3758,6 +3758,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5737709079349628335, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
+      propertyPath: objectsToInteract.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737709079349628335, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
       propertyPath: isOneTimeInteraction
       value: 1
       objectReference: {fileID: 0}
@@ -3765,6 +3769,10 @@ PrefabInstance:
       propertyPath: objectsToInteract.Array.data[0]
       value: 
       objectReference: {fileID: 1097483858}
+    - target: {fileID: 5737709079349628335, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
+      propertyPath: objectsToInteract.Array.data[2]
+      value: 
+      objectReference: {fileID: 929287382}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
 --- !u!1 &880520898
@@ -4520,6 +4528,49 @@ Transform:
   m_Father: {fileID: 1033962602}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &929287380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929287381}
+  - component: {fileID: 929287382}
+  m_Layer: 9
+  m_Name: SimulationEnabler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929287381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929287380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1190477930}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &929287382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929287380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87d9e42c44ef1d44a807513dbd5c06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963256405
 GameObject:
   m_ObjectHideFlags: 0
@@ -6658,6 +6709,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.57893
@@ -12771,6 +12830,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756852915982465764, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
       propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756852916380707251, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
+      propertyPath: isActiveOnstart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756852916380707251, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
+      propertyPath: isActiveOnStart
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7756852916475150462, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}

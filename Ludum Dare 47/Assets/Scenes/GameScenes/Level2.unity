@@ -3259,6 +3259,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.31
@@ -3628,7 +3636,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-566826
+  m_Name: pb_Mesh-3150
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4386,22 +4394,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7756852915982465764, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
-      propertyPath: m_AnchorMax.y
+    - target: {fileID: 7756852916380707251, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
+      propertyPath: isActiveOnStart
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7756852916475150462, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
-      propertyPath: players.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7756852916475150462, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
       propertyPath: players.Array.data[0]
       value: 
       objectReference: {fileID: 1810225850}
-    - target: {fileID: 7756852916475150462, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
-      propertyPath: players.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7756852916700608288, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
       propertyPath: m_Name
       value: Extra
@@ -4448,10 +4448,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756852916700608291, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7756852917153062207, guid: 643c06f2d1517464d86cd869cf3313d4, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
