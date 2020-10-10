@@ -17,7 +17,7 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
     private bool isDestroyed;
 
     private Rigidbody rb;
-    
+
     private void Awake()
     {
         _throwableObject = GetComponent<ThrowableObject>();
@@ -26,12 +26,12 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.impulse.magnitude > 1)
-         {
-             isDestroyed = true;
-         }
+        if (other.impulse.magnitude > 0.5)
+        {
+            isDestroyed = true;
+        }
     }
-
+    
     public override void TriggerSimulate(PlaybackMode mode)
     {
         switch (mode)
@@ -89,6 +89,7 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
                 {
                     TryExecuteCommand();
                 }
+
                 break;
             case PlaybackMode.Rewind:
                 TryRestoreCommand();
@@ -105,11 +106,11 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
                 //float min = 0;
                 //float max = 1;
                 //var myVector = new Vector3(Random.Range(min, max), Random.Range(min, max), UnityEngine.Random.Range(min, max))
-                
+
                 cell.GetComponent<Rigidbody>().velocity = rb.velocity;
                 //cell.GetComponent<Rigidbody>().velocity = myVector;
             }
-        
+
             rb.detectCollisions = !isDestroyed;
             rb.isKinematic = isDestroyed;
             GetComponent<MeshRenderer>().enabled = !isDestroyed;
@@ -124,14 +125,14 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
         state.rotation = transform.rotation;
         state.velocity = _throwableObject.rb.velocity;
         state.isDestroyed = isDestroyed;
-                
+
         states.Add(state);
 
         lastStateIdx = states.Count - 1;
     }
 
     private bool currentIsDestroy;
-    
+
     private void TryExecuteCommand()
     {
         if (lastStateIdx == states.Count - 1)
