@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3021060435921174074}
   - component: {fileID: 9015838345039795431}
   - component: {fileID: 4206444802593198746}
-  - component: {fileID: 7585337775464656679}
+  - component: {fileID: 1699267646}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -319,7 +319,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7585337775464656679
+--- !u!114 &1699267646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -328,11 +328,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 282754440605506889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doAnimationName: PlatePressed
-  undoAnimationName: PlateUnpressed
+  animationSpeed: 6
 --- !u!1 &1676054306484597230
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToInteract:
-  - {fileID: 7585337775464656679}
+  - {fileID: 1699267646}
   - {fileID: 0}
   interactionText: 
   isAvailableByDefault: 1

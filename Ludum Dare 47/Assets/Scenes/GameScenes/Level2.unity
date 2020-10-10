@@ -2359,17 +2359,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &849145098 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
-  m_PrefabInstance: {fileID: 1627743093}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &963256405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3636,7 +3625,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3150
+  m_Name: pb_Mesh-255818
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3804,7 +3793,7 @@ PrefabInstance:
     - target: {fileID: 1676054306484597222, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: objectsToInteract.Array.data[1]
       value: 
-      objectReference: {fileID: 849145098}
+      objectReference: {fileID: 1627743094}
     - target: {fileID: 1676054306484597224, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.538006
@@ -3932,6 +3921,17 @@ PrefabInstance:
       objectReference: {fileID: 334459137}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+--- !u!114 &1627743094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_PrefabInstance: {fileID: 1627743093}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810225850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1781282350450369837, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}

@@ -913,6 +913,17 @@ Transform:
   m_Father: {fileID: 1033962602}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &127221367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_PrefabInstance: {fileID: 1097483857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &173819154
 Mesh:
   m_ObjectHideFlags: 0
@@ -5702,17 +5713,6 @@ PrefabInstance:
       objectReference: {fileID: 2065775008}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
---- !u!114 &1097483858 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
-  m_PrefabInstance: {fileID: 1097483857}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1141219328
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,7 +6565,7 @@ Transform:
   - {fileID: 1033962602}
   - {fileID: 963256406}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200758326
 GameObject:
@@ -7057,7 +7057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_Url
-      value: C:/Users/vgolohvastov/Desktop/ludum-dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7905,7 +7905,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-20578
+  m_Name: pb_Mesh-277854
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10479,7 +10479,7 @@ PrefabInstance:
     - target: {fileID: 1676054306484597222, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: objectsToInteract.Array.data[1]
       value: 
-      objectReference: {fileID: 1097483858}
+      objectReference: {fileID: 127221367}
     - target: {fileID: 1676054306484597224, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.67
@@ -13306,7 +13306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2331478762230165948, guid: bce1029b5d6f5d944b76da22c2c43984, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2331478762230165948, guid: bce1029b5d6f5d944b76da22c2c43984, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

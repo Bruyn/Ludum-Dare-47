@@ -293,7 +293,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-576136
+  m_Name: pb_Mesh-268912
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -520,17 +520,6 @@ PrefabInstance:
       objectReference: {fileID: 126802409}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
---- !u!114 &102973717 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
-  m_PrefabInstance: {fileID: 102973716}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &102973718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7211196634151906194, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
@@ -1818,17 +1807,6 @@ Transform:
   m_Father: {fileID: 1033962602}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &290729401 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
-  m_PrefabInstance: {fileID: 1326120358}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &309333201
 Mesh:
   m_ObjectHideFlags: 0
@@ -2619,6 +2597,17 @@ Transform:
   m_Father: {fileID: 1033962602}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &418557042 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_PrefabInstance: {fileID: 800937298}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &505367848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,6 +2985,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.97
@@ -4407,17 +4404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7211196634151906194, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
   m_PrefabInstance: {fileID: 800937298}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &800937300 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
-  m_PrefabInstance: {fileID: 800937298}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &887090123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4476,7 +4462,7 @@ PrefabInstance:
     - target: {fileID: 5737709079349628335, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
       propertyPath: objectsToInteract.Array.data[0]
       value: 
-      objectReference: {fileID: 800937300}
+      objectReference: {fileID: 418557042}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
 --- !u!4 &887090124 stripped
@@ -5168,6 +5154,17 @@ Transform:
   m_Father: {fileID: 1033962602}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1008122886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_PrefabInstance: {fileID: 102973716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1033962601
 GameObject:
   m_ObjectHideFlags: 0
@@ -6612,6 +6609,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_DataSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162258867, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
+      propertyPath: m_Url
+      value: C:/stuff/Ludum-Dare-47/Ludum Dare 47/Assets/StreamingAssets\glitch.mp4
+      objectReference: {fileID: 0}
     - target: {fileID: 1781282350450369824, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.782
@@ -6672,7 +6677,7 @@ PrefabInstance:
     - target: {fileID: 1676054306484597222, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: objectsToInteract.Array.data[1]
       value: 
-      objectReference: {fileID: 290729401}
+      objectReference: {fileID: 1586239162}
     - target: {fileID: 1676054306484597224, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -49.414757
@@ -7437,17 +7442,6 @@ PrefabInstance:
       objectReference: {fileID: 629486842}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
---- !u!114 &1416677592 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1633330538697313807, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
-  m_PrefabInstance: {fileID: 1416677591}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1416677593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7211196634151906194, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
@@ -7463,7 +7457,7 @@ PrefabInstance:
     - target: {fileID: 1676054306484597222, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: objectsToInteract.Array.data[1]
       value: 
-      objectReference: {fileID: 1416677592}
+      objectReference: {fileID: 1927566185}
     - target: {fileID: 1676054306484597224, guid: 967a00d1427e475b984a4a3632223bd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.785717
@@ -7855,6 +7849,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1586239162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_PrefabInstance: {fileID: 1326120358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1608880953
 GameObject:
   m_ObjectHideFlags: 0
@@ -9291,6 +9296,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1781282350450369837, guid: 235e4871961a27f4f897b47f9fd95a4f, type: 3}
   m_PrefabInstance: {fileID: 1360062612}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1927566185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7688475, guid: 9b26cc1b152ba5e4196ece3d5a9d53f7, type: 3}
+  m_PrefabInstance: {fileID: 1416677591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2010694479
 Mesh:
   m_ObjectHideFlags: 0
@@ -9826,7 +9842,7 @@ PrefabInstance:
     - target: {fileID: 5737709079349628335, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
       propertyPath: objectsToInteract.Array.data[0]
       value: 
-      objectReference: {fileID: 102973717}
+      objectReference: {fileID: 1008122886}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e845cf3234c2724fb1daa12e6d66305, type: 3}
 --- !u!4 &2134052355 stripped

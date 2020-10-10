@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 755620343874890990}
   - component: {fileID: 8476151506107203351}
   - component: {fileID: 6134935478673203521}
-  - component: {fileID: 1633330538697313807}
+  - component: {fileID: 7688475}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -334,7 +334,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1633330538697313807
+--- !u!114 &7688475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -343,11 +343,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7135110406176232506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6a1a6e269789544a0eafd7f406d850, type: 3}
+  m_Script: {fileID: 11500000, guid: 10088f96dbfd4533be44a4b593bd2e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doAnimationName: DoorOpen
-  undoAnimationName: DoorClose
+  animationSpeed: 1
 --- !u!1 &7211196634151906195
 GameObject:
   m_ObjectHideFlags: 0
