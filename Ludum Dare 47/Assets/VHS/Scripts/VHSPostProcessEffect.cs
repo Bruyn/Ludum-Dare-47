@@ -11,7 +11,6 @@ public class VHSPostProcessEffect : MonoBehaviour
 	[SerializeField] private float xSpeed = 0.1f;
 	
 	public Shader shader;
-	public VideoClip VHSClip;
 
 	private float _yScanline;
 	private float _xScanline;
@@ -25,7 +24,7 @@ public class VHSPostProcessEffect : MonoBehaviour
 		_player.isLooping = true;
 		_player.renderMode = VideoRenderMode.APIOnly;
 		_player.audioOutputMode = VideoAudioOutputMode.None;
-		_player.clip = VHSClip;
+		_player.url = System.IO.Path.Combine (Application.streamingAssetsPath, "glitch.mp4");
 		_player.Play();
 	}
 
