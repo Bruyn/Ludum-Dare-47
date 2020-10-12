@@ -26,7 +26,10 @@ public class SimulateEntityDestructableObject : SimulatedEntityBase
 
     private void OnCollisionEnter(Collision other)
     {
-        isDestroyed = true;
+        if (rb.velocity.magnitude > 10)
+        {
+            isDestroyed = true;    
+        }
     }
     
     public override void TriggerSimulate(PlaybackMode mode)
